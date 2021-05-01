@@ -26,8 +26,9 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "plugin:shopify/typescript",
+      "plugin:shopify/react",
+      "plugin:shopify/prettier"
     ]
   },
   "browserslist": {
@@ -41,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-plugin-shopify": "^35.1.0"
   }
 }
