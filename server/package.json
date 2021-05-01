@@ -1,0 +1,12 @@
+{
+  "name": "shoppies-server",
+  "version": "1.0.0",
+  "description": "this is the server for the Shopify Frontend Developer Challenge, The Shoppies!",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nirmal Hegde",
+  "license": "ISC"
+}
