@@ -1,44 +1,10 @@
 const express = require("express");
-const {
-  GraphQLObjectType,
-  GraphQLSchema,
-  GraphQLString,
-  GraphQLList,
-} = require("graphql");
-const { graphqlHTTP } = require("express-graphql");
-const axios = require("axios");
-import { IBaseMovie } from './models/baseMovie';
 require("dotenv").config();
+import { graphqlHTTP } from "express-graphql";
+import schema from "./schema/schema"
 
 const app = express();
 const port: string = process.env.PORT || "5000";
-
-const MovieType = new GraphQLObjectType({
-  name: "Movies",
-  fields: () => ({
-    Title: {
-      type: GraphQLString,
-    },
-  }),
-});
-
-const RootQuery = new GraphQLObjectType({
-  name: "RootQuery",
-  fields: {
-    baseMovieSearch: {
-      type: new GraphQLList(MovieType),
-      args: { title: { type: GraphQLString } },
-      async resolve(parent, args) {
-        const result: IBaseMovie = await axios.get(`http://www.omdbapi.com/?s=${args.title}&apikey=${process.env.API_KEY}`)
-          .then((res) => res.data.Search)
-          .catch((err) => console.log(err));
-        return result;
-      },
-    },
-  },
-});
-
-const schema = new GraphQLSchema({ query: RootQuery });
 
 app.use(
   "/graphql",
