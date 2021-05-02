@@ -14,7 +14,7 @@ require("dotenv").config();
 const app = express();
 const port: string = process.env.PORT || "5000";
 
-const MovieType: typeof GraphQLObjectType = new GraphQLObjectType({
+const MovieType = new GraphQLObjectType({
   name: "Movies",
   fields: () => ({
     Title: {
@@ -30,7 +30,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(MovieType),
       args: { title: { type: GraphQLString } },
       async resolve(parent, args) {
-        const result: IBaseMovie = await axios.get(`http://www.omdbapi.com/?s=${args.title}&apikey=42e521f5`)
+        const result: IBaseMovie = await axios.get(`http://www.omdbapi.com/?s=${args.title}&apikey=${process.env.API_KEY}`)
           .then((res) => res.data.Search)
           .catch((err) => console.log(err));
         return result;
@@ -39,7 +39,7 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
-const schema: typeof GraphQLSchema = new GraphQLSchema({ query: RootQuery });
+const schema = new GraphQLSchema({ query: RootQuery });
 
 app.use(
   "/graphql",
