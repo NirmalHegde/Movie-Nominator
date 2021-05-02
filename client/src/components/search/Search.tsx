@@ -22,12 +22,7 @@ export default function AutocompleteExample() {
         setOptions(deselectedOptions);
         return;
       }
-
-      const filterRegex = new RegExp(value, 'i');
-      const resultOptions = deselectedOptions.filter((option) =>
-        option.label.match(filterRegex),
-      );
-      setOptions(resultOptions);
+      setOptions();
     },
     [deselectedOptions],
   );

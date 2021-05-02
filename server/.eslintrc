@@ -5,7 +5,10 @@
     "@typescript-eslint"
   ],
   "extends": [
-    "plugin:@shopify/typescript",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+		"plugin:@shopify/typescript",
 		"plugin:@shopify/typescript-type-checking"
   ],
 	"parserOptions": {
