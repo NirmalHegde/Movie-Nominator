@@ -2,13 +2,12 @@ const express = require("express");
 const {
   GraphQLObjectType,
   GraphQLSchema,
-  GraphQLInt,
   GraphQLString,
   GraphQLList,
 } = require("graphql");
 const { graphqlHTTP } = require("express-graphql");
 const axios = require("axios");
-import { IBaseMovie } from '../models/baseMovie';
+import { IBaseMovie } from './models/baseMovie';
 require("dotenv").config();
 
 const app = express();
