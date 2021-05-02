@@ -1,31 +1,55 @@
-import React, {useCallback, useState} from 'react';
-import {Icon, TextField, Autocomplete} from '@shopify/polaris';
-import {SearchMinor} from '@shopify/polaris-icons';
+import React, { useCallback, useEffect, useState } from "react";
+import { Icon, TextField, Autocomplete } from "@shopify/polaris";
+import { SearchMinor } from "@shopify/polaris-icons";
+import { MOVIE_SEARCH } from "../../graphQL/queries";
+import { useLazyQuery } from "@apollo/client";
+import IBaseMovie from "../../models/BaseMovie";
+import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/components/OptionList";
+const queryLimit = 2;
+const baseOptions: OptionDescriptor[] = [
+  { value: "Example", label: "Example: Guardians of the Galaxy", disabled: true },
+];
 
 export default function AutocompleteExample() {
-  const deselectedOptions = [
-    {value: 'rustic', label: 'Rustic'},
-    {value: 'antique', label: 'Antique'},
-    {value: 'vinyl', label: 'Vinyl'},
-    {value: 'vintage', label: 'Vintage'},
-    {value: 'refurbished', label: 'Refurbished'},
-  ];
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [inputValue, setInputValue] = useState('');
-  const [options, setOptions] = useState(deselectedOptions);
+  const [inputValue, setInputValue] = useState("");
+  const [options, setOptions] = useState<OptionDescriptor[]>(baseOptions);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isEmptyState, setIsEmptyState] = useState(false);
+  const [baseMovieSearch, { data }] = useLazyQuery(MOVIE_SEARCH, {variables: { title: inputValue }});
 
-  const updateText = useCallback(
-    (value) => {
-      setInputValue(value);
-
-      if (value === '') {
-        setOptions(deselectedOptions);
-        return;
+  useEffect(() => {
+    if (data) {
+      const movieOptions: IBaseMovie[] = data.baseMovieSearch;
+      let optionsArray: OptionDescriptor[];
+      if (movieOptions) {
+        optionsArray = movieOptions.map(
+          (movieOption) => {
+            return { value: movieOption.Title, label: movieOption.Title };
+          }
+        );
+      } else {
+        optionsArray = [{ value: "Error", label: "Unable to find movies matching this search query", disabled: true }];
       }
-      setOptions();
-    },
-    [deselectedOptions],
-  );
+      setOptions(optionsArray);
+      setIsLoading(false);
+    }
+  }, [data]);
+
+  const updateText = useCallback(async (value: string) => {
+    setInputValue(value);
+
+    if (value === "") {
+      setIsLoading(true);
+      setOptions(baseOptions);
+      setIsLoading(false);
+    } else if (value.length % queryLimit === 0) {
+      setIsLoading(true);
+      baseMovieSearch();
+    }
+
+    return;
+  }, [baseMovieSearch]);
 
   const updateSelection = useCallback(
     (selected) => {
@@ -39,7 +63,7 @@ export default function AutocompleteExample() {
       setSelectedOptions(selected);
       setInputValue(selectedValue);
     },
-    [options],
+    [options]
   );
 
   const textField = (
@@ -53,12 +77,13 @@ export default function AutocompleteExample() {
   );
 
   return (
-    <div style={{height: '225px'}}>
+    <div style={{ height: "225px" }}>
       <Autocomplete
         options={options}
         selected={selectedOptions}
         onSelect={updateSelection}
         textField={textField}
+        loading={isLoading}
       />
     </div>
   );
