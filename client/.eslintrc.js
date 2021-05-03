@@ -14,8 +14,8 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint", "react-hooks"],
   rules: {
-    semi: [2, "never"],
-    quotes: [2, "single"],
+    semi: [2, "always"],
+    quotes: [2, "double"],
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "react/jsx-filename-extension": ["warn", { extensions: [".tsx"] }],

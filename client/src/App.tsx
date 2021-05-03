@@ -1,11 +1,11 @@
-import React from 'react'
-import { ApolloProvider } from '@apollo/client'
-import client from './graphQL/index'
-import Main from './components/main/Main'
+import React from "react";
+import { ApolloProvider } from "@apollo/client";
+import client from "./graphQL/index";
+import Main from "./components/main/Main";
 
-const dotenv = require('dotenv')
+const dotenv = require("dotenv");
 
-dotenv.config()
+dotenv.config();
 
 /* eslint-disable-next-line no-undef */
 const App = (): JSX.Element => (
@@ -14,6 +14,6 @@ const App = (): JSX.Element => (
       <Main />
     </div>
   </ApolloProvider>
-)
+);
 
-export default App
+export default App;

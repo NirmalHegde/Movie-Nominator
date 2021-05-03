@@ -15,12 +15,13 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(BaseMovie),
       args: { title: { type: GraphQLString } },
       async resolve(parent, args) {
-        const result: IBaseMovie = await axios
+        const result: IBaseMovie[] = await axios
           .get(
             `http://www.omdbapi.com/?s=${args.title}&apikey=${process.env.API_KEY}`,
           )
           .then((res) => res.data.Search)
           .catch((err) => console.log(err))
+        
         return result
       },
     },

@@ -1,11 +1,11 @@
-import React from 'react'
-import Search from './search/Search'
-import './Main.css'
-import MovieList from './movieList/MovieList'
-import NominationList from './nominationList/NominationList'
-import MovieInfo from './movieInfo/MovieInfo'
+import React from "react";
+import Search from "./search/Search";
+import "./Main.css";
+import MovieList from "./movieList/MovieList";
+import NominationList from "./nominationList/NominationList";
+import MovieInfo from "./movieInfo/MovieInfo";
 
-require('dotenv').config()
+require("dotenv").config();
 
 const Main = (): JSX.Element => (
   <div className="root">
@@ -22,6 +22,6 @@ const Main = (): JSX.Element => (
     </div>
     <MovieInfo />
   </div>
-)
+);
 
-export default Main
+export default Main;

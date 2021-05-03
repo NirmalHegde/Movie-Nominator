@@ -12,6 +12,9 @@ const BaseMovie = new GraphQLObjectType({
     imdbID: {
       type: GraphQLString,
     },
+    Type: {
+      type: GraphQLString,
+    },
     Poster: {
       type: GraphQLString,
     },

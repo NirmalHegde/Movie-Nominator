@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 // import { Button } from '@shopify/polaris'
 
 const MovieInfo = (): JSX.Element => {
@@ -11,7 +11,7 @@ const MovieInfo = (): JSX.Element => {
   // const activator = <Button onClick={handleChange}>Open</Button>
 
   return (
-    <div style={{ height: '500px' }}>
+    <div style={{ height: "500px" }}>
       {/* <Modal
         activator={activator}
         open={active}
@@ -35,7 +35,7 @@ const MovieInfo = (): JSX.Element => {
         ))}
       </Modal> */}
     </div>
-  )
-}
+  );
+};
 
-export default MovieInfo
+export default MovieInfo;

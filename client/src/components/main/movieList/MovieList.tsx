@@ -1,12 +1,12 @@
-import React from 'react'
-import { Card } from '@shopify/polaris'
+import React from "react";
+import { Card } from "@shopify/polaris";
 
 const MovieList = (): JSX.Element => (
-  <Card sectioned>
-    <div style={{ width: '40vw' }}>
+  <div style={{ width: "40vw" }}>
+    <Card sectioned>
       <h1>Movie List</h1>
-    </div>
-  </Card>
-)
+    </Card>
+  </div>
+);
 
-export default MovieList
+export default MovieList;
