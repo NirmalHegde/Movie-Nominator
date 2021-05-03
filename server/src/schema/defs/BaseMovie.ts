@@ -4,8 +4,17 @@ const BaseMovie = new GraphQLObjectType({
   name: "Movies",
   fields: () => ({
     Title: {
-      type: GraphQLString,
+      type: GraphQLString
     },
+		Year: {
+			type: GraphQLString
+		},
+		imdbID: {
+			type: GraphQLString
+		},
+		Poster: {
+			type: GraphQLString
+		}
   }),
 });
 

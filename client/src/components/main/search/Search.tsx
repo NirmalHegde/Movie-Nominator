@@ -1,54 +1,79 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Icon, Autocomplete } from "@shopify/polaris";
+import { Icon, Autocomplete, Thumbnail } from "@shopify/polaris";
 import { SearchMinor } from "@shopify/polaris-icons";
 import { MOVIE_SEARCH } from "../../../graphQL/queries";
 import { useLazyQuery } from "@apollo/client";
 import IBaseMovie from "../../../models/BaseMovie";
 import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/components/OptionList";
+import { ImageMajor } from "@shopify/polaris-icons";
 const queryLimit = 2;
 const baseOptions: OptionDescriptor[] = [
-  { value: "Example", label: "Example: Guardians of the Galaxy", disabled: true },
+  {
+    value: "Example",
+    label: "Example: Guardians of the Galaxy",
+    disabled: true,
+  },
 ];
 
-export default function AutocompleteExample() {
+const Search = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState<OptionDescriptor[]>(baseOptions);
   const [isLoading, setIsLoading] = useState(false);
-  const [baseMovieSearch, { data }] = useLazyQuery(MOVIE_SEARCH, {variables: { title: inputValue }});
+  const [baseMovieSearch, { data }] = useLazyQuery(MOVIE_SEARCH, {
+    variables: { title: inputValue },
+  });
 
   useEffect(() => {
     if (data) {
       const movieOptions: IBaseMovie[] = data.baseMovieSearch;
       let optionsArray: OptionDescriptor[];
       if (movieOptions) {
-        optionsArray = movieOptions.map(
-          (movieOption) => {
-            return { value: movieOption.Title, label: movieOption.Title };
-          }
-        );
+        optionsArray = movieOptions.map((movieOption) => {
+          return {
+            value: movieOption.imdbID,
+            label: `${movieOption.Title} (${movieOption.Year})`,
+            media: (
+              <Thumbnail
+                source={
+                  movieOption.Poster !== "N/A" ? movieOption.Poster : ImageMajor
+                }
+                alt={movieOption.Title}
+              />
+            ),
+          };
+        });
       } else {
-        optionsArray = [{ value: "Error", label: "Unable to find movies matching this search query", disabled: true }];
+        optionsArray = [
+          {
+            value: "Error",
+            label: "Unable to find movies matching this search query",
+            disabled: true,
+          },
+        ];
       }
       setOptions(optionsArray);
       setIsLoading(false);
     }
   }, [data]);
 
-  const updateText = useCallback(async (value: string) => {
-    setInputValue(value);
+  const updateText = useCallback(
+    async (value: string) => {
+      setInputValue(value);
 
-    if (value === "") {
-      setIsLoading(true);
-      setOptions(baseOptions);
-      setIsLoading(false);
-    } else if (value.length % queryLimit === 0) {
-      setIsLoading(true);
-      baseMovieSearch();
-    }
+      if (value === "") {
+        setIsLoading(true);
+        setOptions(baseOptions);
+        setIsLoading(false);
+      } else if (value.length % queryLimit === 0) {
+        setIsLoading(true);
+        baseMovieSearch();
+      }
 
-    return;
-  }, [baseMovieSearch]);
+      return;
+    },
+    [baseMovieSearch]
+  );
 
   const updateSelection = useCallback(
     (selected) => {
@@ -86,4 +111,6 @@ export default function AutocompleteExample() {
       />
     </div>
   );
-}
+};
+
+export default Search;
