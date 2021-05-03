@@ -1,0 +1,15 @@
+.root {
+	padding: 3% 5% 5% 5%;
+	background-color: aquamarine;
+	height: 100vh;
+}
+
+.title {
+	text-align: center;
+}
+
+.content {
+	display: flex;
+	justify-content: center;
+}
+

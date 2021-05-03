@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Icon, TextField, Autocomplete } from "@shopify/polaris";
+import { Icon, Autocomplete } from "@shopify/polaris";
 import { SearchMinor } from "@shopify/polaris-icons";
 import { MOVIE_SEARCH } from "../../graphQL/queries";
 import { useLazyQuery } from "@apollo/client";
@@ -15,7 +15,6 @@ export default function AutocompleteExample() {
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState<OptionDescriptor[]>(baseOptions);
   const [isLoading, setIsLoading] = useState(false);
-  const [isEmptyState, setIsEmptyState] = useState(false);
   const [baseMovieSearch, { data }] = useLazyQuery(MOVIE_SEARCH, {variables: { title: inputValue }});
 
   useEffect(() => {
@@ -69,7 +68,7 @@ export default function AutocompleteExample() {
   const textField = (
     <Autocomplete.TextField
       onChange={updateText}
-      label="Tags"
+      label=""
       value={inputValue}
       prefix={<Icon source={SearchMinor} color="base" />}
       placeholder="Search"
