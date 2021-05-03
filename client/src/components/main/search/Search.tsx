@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Icon, Autocomplete } from "@shopify/polaris";
 import { SearchMinor } from "@shopify/polaris-icons";
-import { MOVIE_SEARCH } from "../../graphQL/queries";
+import { MOVIE_SEARCH } from "../../../graphQL/queries";
 import { useLazyQuery } from "@apollo/client";
-import IBaseMovie from "../../models/BaseMovie";
+import IBaseMovie from "../../../models/BaseMovie";
 import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/components/OptionList";
 const queryLimit = 2;
 const baseOptions: OptionDescriptor[] = [

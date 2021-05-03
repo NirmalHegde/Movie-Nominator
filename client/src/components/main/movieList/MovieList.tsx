@@ -5,7 +5,7 @@ const MovieList = () => {
   return (
     <Card sectioned>
 			<div style={{width: "40vw"}}>
-				<h1>hello</h1>
+				<h1>Movie List</h1>
 			</div>
     </Card>
   );
