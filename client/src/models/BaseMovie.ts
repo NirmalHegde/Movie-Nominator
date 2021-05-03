@@ -4,4 +4,4 @@ export default interface IBaseMovie {
 	imdbID: string;
 	Poster: string;
 	Type?: string;
-};
+}

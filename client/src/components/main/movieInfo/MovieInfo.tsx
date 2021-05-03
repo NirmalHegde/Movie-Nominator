@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 // import { Button } from '@shopify/polaris'
 
 const MovieInfo = (): JSX.Element => {
@@ -35,7 +35,7 @@ const MovieInfo = (): JSX.Element => {
         ))}
       </Modal> */}
     </div>
-  );
-};
+  )
+}
 
-export default MovieInfo;
+export default MovieInfo

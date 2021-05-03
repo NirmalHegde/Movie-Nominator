@@ -14,7 +14,7 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint", "react-hooks"],
   rules: {
-    semi: ["error", "always", { "omitLastInOneLineBlock": true}],
+    semi: [2, "never"],
     quotes: [2, "single"],
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
@@ -42,7 +42,8 @@ module.exports = {
     "linebreak-style": 0,
     indent: ["error", 2],
     "no-tabs": 0,
-    "arrow-body-style": 0
+    "arrow-body-style": 0,
+    "no-alert": 0
   },
   settings: {
     "import/resolver": {
