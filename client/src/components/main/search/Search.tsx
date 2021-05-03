@@ -1,4 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, {
+  KeyboardEvent, useCallback, useEffect, useState,
+} from "react";
 import { Icon, Autocomplete, Thumbnail } from "@shopify/polaris";
 import { SearchMinor, ImageMajor } from "@shopify/polaris-icons";
 import { useLazyQuery } from "@apollo/client";
@@ -6,6 +9,7 @@ import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/compone
 
 import IBaseMovie from "../../../models/BaseMovie";
 import { MOVIE_SEARCH } from "../../../graphQL/queries";
+import useMovieList from "../movieList/useMovieList";
 
 const queryLimit = 2;
 const baseOptions: OptionDescriptor[] = [
@@ -24,24 +28,42 @@ const Search = (): JSX.Element => {
   const [baseMovieSearch, { data }] = useLazyQuery(MOVIE_SEARCH, {
     variables: { title: inputValue },
   });
+  const { movieListInput } = useMovieList(inputValue);
+
+  const keypressHandler = (e: KeyboardEvent): void => {
+    if (e.code === "Enter") {
+      movieListInput();
+    }
+  };
 
   useEffect(() => {
-    console.log(data);
     let optionsArray: OptionDescriptor[];
     if (data?.baseMovieSearch) {
-      const movieOptions: IBaseMovie[] = data.baseMovieSearch;
-      optionsArray = movieOptions.map((movieOption) => ({
-        value: movieOption.imdbID,
-        label: `${movieOption.Title} (${movieOption.Year})`,
-        media: (
-          <Thumbnail
-            source={
-              movieOption.Poster !== "N/A" ? movieOption.Poster : ImageMajor
-            }
-            alt={movieOption.Title}
-          />
-        ),
-      }));
+      const movieOptions: IBaseMovie[] = data.baseMovieSearch.filter((dataIndex: IBaseMovie) => {
+        return dataIndex.Type === "movie";
+      });
+      if (movieOptions) {
+        optionsArray = movieOptions.map((movieOption) => ({
+          value: movieOption.imdbID,
+          label: `${movieOption.Title} (${movieOption.Year})`,
+          media: (
+            <Thumbnail
+              source={
+                movieOption.Poster !== "N/A" ? movieOption.Poster : ImageMajor
+              }
+              alt={movieOption.Title}
+            />
+          ),
+        }));
+      } else {
+        optionsArray = [
+          {
+            value: "Error",
+            label: "Unable to find movies matching this search query",
+            disabled: true,
+          },
+        ];
+      }
     } else {
       optionsArray = [
         {
@@ -56,9 +78,8 @@ const Search = (): JSX.Element => {
   }, [data]);
 
   const updateText = useCallback(
-    async (value: string) => {
+    (value: string) => {
       setInputValue(value);
-
       if (value === "") {
         setIsLoading(true);
         setOptions(baseOptions);
@@ -94,7 +115,7 @@ const Search = (): JSX.Element => {
     />
   );
   return (
-    <div style={{ height: "10vh" }}>
+    <div onKeyPress={(e) => keypressHandler(e)} style={{ height: "10vh" }}>
       <Autocomplete
         options={options}
         selected={selectedOptions}
