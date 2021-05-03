@@ -1,10 +1,13 @@
 import React from 'react';
-import Search from "./search/Search";
-import { ApolloProvider } from "@apollo/client";
-import client from "../../graphQL/index";
-import "./Main.css"
+import {ApolloProvider} from '@apollo/client';
+
+import client from '../../graphQL/index';
+
+import Search from './search/Search';
+import './Main.css';
 import MovieList from './movieList/MovieList';
 import NominationList from './nominationList/NominationList';
+import MovieInfo from './movieInfo/MovieInfo';
 
 require('dotenv').config();
 
@@ -20,6 +23,7 @@ function App() {
           <MovieList />
           <NominationList />
         </div>
+        <MovieInfo />
       </div>
     </ApolloProvider>
   );

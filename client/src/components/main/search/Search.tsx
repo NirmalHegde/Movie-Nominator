@@ -1,27 +1,28 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Icon, Autocomplete, Thumbnail } from "@shopify/polaris";
-import { SearchMinor } from "@shopify/polaris-icons";
-import { MOVIE_SEARCH } from "../../../graphQL/queries";
-import { useLazyQuery } from "@apollo/client";
-import IBaseMovie from "../../../models/BaseMovie";
-import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/components/OptionList";
-import { ImageMajor } from "@shopify/polaris-icons";
+import React, {useCallback, useEffect, useState} from 'react';
+import {Icon, Autocomplete, Thumbnail} from '@shopify/polaris';
+import {SearchMinor, ImageMajor} from '@shopify/polaris-icons';
+import {useLazyQuery} from '@apollo/client';
+import {OptionDescriptor} from '@shopify/polaris/dist/types/latest/src/components/OptionList';
+
+import IBaseMovie from '../../../models/BaseMovie';
+import {MOVIE_SEARCH} from '../../../graphQL/queries';
+
 const queryLimit = 2;
 const baseOptions: OptionDescriptor[] = [
   {
-    value: "Example",
-    label: "Example: Guardians of the Galaxy",
+    value: 'Example',
+    label: 'Example: Guardians of the Galaxy',
     disabled: true,
   },
 ];
 
 const Search = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState<OptionDescriptor[]>(baseOptions);
   const [isLoading, setIsLoading] = useState(false);
-  const [baseMovieSearch, { data }] = useLazyQuery(MOVIE_SEARCH, {
-    variables: { title: inputValue },
+  const [baseMovieSearch, {data}] = useLazyQuery(MOVIE_SEARCH, {
+    variables: {title: inputValue},
   });
 
   useEffect(() => {
@@ -33,21 +34,21 @@ const Search = () => {
           return {
             value: movieOption.imdbID,
             label: `${movieOption.Title} (${movieOption.Year})`,
-            media: (
+            media:
               <Thumbnail
                 source={
-                  movieOption.Poster !== "N/A" ? movieOption.Poster : ImageMajor
+                  movieOption.Poster !== 'N/A' ? movieOption.Poster : ImageMajor
                 }
                 alt={movieOption.Title}
               />
-            ),
+            ,
           };
         });
       } else {
         optionsArray = [
           {
-            value: "Error",
-            label: "Unable to find movies matching this search query",
+            value: 'Error',
+            label: 'Unable to find movies matching this search query',
             disabled: true,
           },
         ];
@@ -61,7 +62,7 @@ const Search = () => {
     async (value: string) => {
       setInputValue(value);
 
-      if (value === "") {
+      if (value === '') {
         setIsLoading(true);
         setOptions(baseOptions);
         setIsLoading(false);
@@ -70,9 +71,9 @@ const Search = () => {
         baseMovieSearch();
       }
 
-      return;
+
     },
-    [baseMovieSearch]
+    [baseMovieSearch],
   );
 
   const updateSelection = useCallback(
@@ -87,21 +88,19 @@ const Search = () => {
       setSelectedOptions(selected);
       setInputValue(selectedValue);
     },
-    [options]
+    [options],
   );
 
-  const textField = (
+  const textField =
     <Autocomplete.TextField
       onChange={updateText}
       label=""
       value={inputValue}
       prefix={<Icon source={SearchMinor} color="base" />}
       placeholder="Search"
-    />
-  );
-
+    />;
   return (
-    <div style={{ height: "225px" }}>
+    <div style={{height: '225px'}}>
       <Autocomplete
         options={options}
         selected={selectedOptions}

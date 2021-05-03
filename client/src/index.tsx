@@ -1,9 +1,10 @@
-import { AppProvider } from '@shopify/polaris';
+import {AppProvider} from '@shopify/polaris';
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import "@shopify/polaris/dist/styles.css";
+import '@shopify/polaris/dist/styles.css';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -28,7 +29,7 @@ ReactDOM.render(
       <App />
     </AppProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
