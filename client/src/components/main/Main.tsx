@@ -11,7 +11,7 @@ import MovieInfo from './movieInfo/MovieInfo';
 
 require('dotenv').config();
 
-function App() {
+const Main = () => {
   return (
     <ApolloProvider client={client}>
       <div className="root">
@@ -29,4 +29,4 @@ function App() {
   );
 }
 
-export default App;
+export default Main;
