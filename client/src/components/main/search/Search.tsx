@@ -48,7 +48,6 @@ const Search = (): JSX.Element => {
 
   const keypressHandler = (e: KeyboardEvent): void => {
     if (e.code === "Enter") {
-      console.log(e);
       baseMovieSearch();
       dispatch(showMovieList());
     }

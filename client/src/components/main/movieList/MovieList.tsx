@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { Card } from "@shopify/polaris";
 import { useSelector } from "react-redux";
@@ -26,7 +27,7 @@ const MovieList = (): JSX.Element => {
   }, [shouldMovieListLoad]);
 
   return (
-    <div style={{ width: "40vw" }}>
+    <div style={{ width: "100%" }}>
       <Card sectioned>
         {componentMovieList.map((movie) => {
           return (
