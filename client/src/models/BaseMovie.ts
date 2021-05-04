@@ -4,5 +4,5 @@ export default interface IBaseMovie {
 	Year: string;
 	imdbID: string;
 	Poster: string;
-	Type: string;
+	Type?: string;
 }

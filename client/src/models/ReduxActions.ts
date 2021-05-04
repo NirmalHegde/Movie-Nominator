@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 enum ReduxActions {
-	ShowMovieList = "SHOWLIST"
+	ShowMovieList = "SHOWLIST",
+	SetMovieList = "SETMOVIES"
 }
 
 export default ReduxActions;

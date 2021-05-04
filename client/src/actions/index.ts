@@ -5,3 +5,10 @@ export function showMovieList(): {type: string} {
     type: ReduxActions.ShowMovieList,
   };
 }
+
+export function setMovieList(movieList: any): {type: string, payload: any} {
+  return {
+    type: ReduxActions.SetMovieList,
+    payload: movieList,
+  };
+}

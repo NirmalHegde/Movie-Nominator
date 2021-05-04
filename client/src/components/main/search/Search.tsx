@@ -7,8 +7,10 @@ import { SearchMinor, ImageMajor } from "@shopify/polaris-icons";
 import { useLazyQuery } from "@apollo/client";
 import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/components/OptionList";
 
+import { useDispatch } from "react-redux";
 import IBaseMovie from "../../../models/BaseMovie";
 import { MOVIE_SEARCH } from "../../../graphQL/queries";
+import { setMovieList, showMovieList } from "../../../actions";
 
 const queryLimit = 2;
 const baseOptions: OptionDescriptor[] = [
@@ -18,8 +20,24 @@ const baseOptions: OptionDescriptor[] = [
     disabled: true,
   },
 ];
+const errorOptionsArray: OptionDescriptor[] = [
+  {
+    value: "Error",
+    label: "Unable to find movies matching this search query",
+    disabled: true,
+  },
+];
+const errorMovieList: IBaseMovie[] = [
+  {
+    Title: "Unable to find movies matching this search query",
+    Year: "N/A",
+    imdbID: "N/A",
+    Poster: "N/A",
+  },
+];
 
 const Search = (): JSX.Element => {
+  const dispatch = useDispatch();
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState<OptionDescriptor[]>(baseOptions);
@@ -32,6 +50,7 @@ const Search = (): JSX.Element => {
     if (e.code === "Enter") {
       console.log(e);
       baseMovieSearch();
+      dispatch(showMovieList());
     }
   };
 
@@ -44,6 +63,7 @@ const Search = (): JSX.Element => {
         },
       );
       if (movieOptions) {
+        dispatch(setMovieList(movieOptions));
         optionsArray = movieOptions.map((movieOption) => ({
           value: movieOption.imdbID,
           label: `${movieOption.Title} (${movieOption.Year})`,
@@ -57,26 +77,18 @@ const Search = (): JSX.Element => {
           ),
         }));
       } else {
-        optionsArray = [
-          {
-            value: "Error",
-            label: "Unable to find movies matching this search query",
-            disabled: true,
-          },
-        ];
+        dispatch(setMovieList(errorMovieList));
+        optionsArray = errorOptionsArray;
       }
     } else {
-      optionsArray = [
-        {
-          value: "Error",
-          label: "Unable to find movies matching this search query",
-          disabled: true,
-        },
-      ];
+      optionsArray = errorOptionsArray;
+      if (data) {
+        dispatch(setMovieList(errorMovieList));
+      }
     }
     setOptions(optionsArray);
     return () => setIsLoading(false);
-  }, [data]);
+  }, [data, dispatch]);
 
   const updateText = useCallback(
     (value: string) => {
