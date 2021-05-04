@@ -1,17 +1,19 @@
 import IBaseMovie from "../models/BaseMovie";
+import GenericOutputs from "../models/GenericOutputs";
+import ReduxActions from "../models/ReduxActions";
 
-const initMovieList: IBaseMovie[] = [
-  {
-    Title: "Start by searching for your favourite movies above!",
-    Year: "N/A",
-    imdbID: "N/A",
-    Poster: "N/A",
-  },
-];
+interface MovieListReducer {
+  type: ReduxActions;
+  payload: IBaseMovie[];
+}
 
-const movieListReducer = (state = initMovieList, action: any): any => {
+const genericOutputs = new GenericOutputs();
+const movieListReducer = (
+  state = genericOutputs.initMovieList,
+  action: MovieListReducer,
+): IBaseMovie[] => {
   switch (action.type) {
-  case "SETMOVIES":
+  case ReduxActions.SetMovieList:
     return action.payload;
   default:
     return state;

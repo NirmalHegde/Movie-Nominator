@@ -11,36 +11,16 @@ import { useDispatch } from "react-redux";
 import IBaseMovie from "../../../models/BaseMovie";
 import { MOVIE_SEARCH } from "../../../graphQL/queries";
 import { setMovieList, showMovieList } from "../../../actions";
+import GenericOutputs from "../../../models/GenericOutputs";
 
 const queryLimit = 2;
-const baseOptions: OptionDescriptor[] = [
-  {
-    value: "Example",
-    label: "Example: Guardians of the Galaxy",
-    disabled: true,
-  },
-];
-const errorOptionsArray: OptionDescriptor[] = [
-  {
-    value: "Error",
-    label: "Unable to find movies matching this search query",
-    disabled: true,
-  },
-];
-const errorMovieList: IBaseMovie[] = [
-  {
-    Title: "Unable to find movies matching this search query",
-    Year: "N/A",
-    imdbID: "N/A",
-    Poster: "N/A",
-  },
-];
+const genericOutputs = new GenericOutputs();
 
 const Search = (): JSX.Element => {
   const dispatch = useDispatch();
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [options, setOptions] = useState<OptionDescriptor[]>(baseOptions);
+  const [options, setOptions] = useState<OptionDescriptor[]>(genericOutputs.errorOptions);
   const [isLoading, setIsLoading] = useState(false);
   const [baseMovieSearch, { data }] = useLazyQuery(MOVIE_SEARCH, {
     variables: { title: inputValue },
@@ -76,13 +56,13 @@ const Search = (): JSX.Element => {
           ),
         }));
       } else {
-        dispatch(setMovieList(errorMovieList));
-        optionsArray = errorOptionsArray;
+        dispatch(setMovieList(genericOutputs.errorMovieList));
+        optionsArray = genericOutputs.errorOptions;
       }
     } else {
-      optionsArray = errorOptionsArray;
+      optionsArray = genericOutputs.errorOptions;
       if (data) {
-        dispatch(setMovieList(errorMovieList));
+        dispatch(setMovieList(genericOutputs.errorMovieList));
       }
     }
     setOptions(optionsArray);
@@ -94,7 +74,7 @@ const Search = (): JSX.Element => {
       setInputValue(value);
       if (value === "") {
         setIsLoading(true);
-        setOptions(baseOptions);
+        setOptions(genericOutputs.initOptions);
         setIsLoading(false);
       } else if (value.length % queryLimit === 0) {
         setIsLoading(true);

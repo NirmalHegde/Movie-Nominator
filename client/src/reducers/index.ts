@@ -1,10 +1,12 @@
 import { combineReducers, compose, createStore } from "redux";
 import movieListTriggerReducer from "./movieListTriggerReducer";
 import movieListReducer from "./movieListReducer";
+import nominationListReducer from "./nominationListReducer";
 
 const allReducers = combineReducers({
   movieListTrigger: movieListTriggerReducer,
   movieList: movieListReducer,
+  nominationList: nominationListReducer,
 });
 
 /* eslint-disable */
