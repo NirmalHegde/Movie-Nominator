@@ -1,19 +1,14 @@
+/* eslint-disable */
 import React from "react";
-import { ApolloProvider } from "@apollo/client";
-import client from "./graphQL/index";
 import Main from "./components/main/Main";
 
-const dotenv = require("dotenv");
+const App = (): JSX.Element => {
 
-dotenv.config();
-
-/* eslint-disable-next-line no-undef */
-const App = (): JSX.Element => (
-  <ApolloProvider client={client}>
+  return (
     <div>
       <Main />
     </div>
-  </ApolloProvider>
-);
+  );
+};
 
 export default App;

@@ -9,7 +9,6 @@ import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/compone
 
 import IBaseMovie from "../../../models/BaseMovie";
 import { MOVIE_SEARCH } from "../../../graphQL/queries";
-import useMovieList from "../movieList/useMovieList";
 
 const queryLimit = 2;
 const baseOptions: OptionDescriptor[] = [
@@ -28,20 +27,22 @@ const Search = (): JSX.Element => {
   const [baseMovieSearch, { data }] = useLazyQuery(MOVIE_SEARCH, {
     variables: { title: inputValue },
   });
-  const { movieListInput } = useMovieList(inputValue);
 
   const keypressHandler = (e: KeyboardEvent): void => {
     if (e.code === "Enter") {
-      movieListInput();
+      console.log(e);
+      baseMovieSearch();
     }
   };
 
   useEffect(() => {
     let optionsArray: OptionDescriptor[];
     if (data?.baseMovieSearch) {
-      const movieOptions: IBaseMovie[] = data.baseMovieSearch.filter((dataIndex: IBaseMovie) => {
-        return dataIndex.Type === "movie";
-      });
+      const movieOptions: IBaseMovie[] = data.baseMovieSearch.filter(
+        (dataIndex: IBaseMovie) => {
+          return dataIndex.Type === "movie";
+        },
+      );
       if (movieOptions) {
         optionsArray = movieOptions.map((movieOption) => ({
           value: movieOption.imdbID,
@@ -74,7 +75,7 @@ const Search = (): JSX.Element => {
       ];
     }
     setOptions(optionsArray);
-    setIsLoading(false);
+    return () => setIsLoading(false);
   }, [data]);
 
   const updateText = useCallback(
