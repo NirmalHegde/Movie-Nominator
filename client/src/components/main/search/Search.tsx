@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {
   KeyboardEvent,
   useCallback,
@@ -17,6 +16,7 @@ import IBaseMovie from "../../../models/interfaces/BaseMovie";
 import { MOVIE_SEARCH } from "../../../graphQL/queries";
 import ReduxActions from "../../../models/classes/ReduxActions";
 import GenericOutputs from "../../../models/classes/GenericOutputs";
+import "./Search.css";
 
 const queryLimit = 2;
 const genericOutputs = new GenericOutputs();
@@ -26,7 +26,6 @@ const Search = (): JSX.Element => {
   const dispatch = useDispatch();
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [displayMovieList, setDisplayMovieList] = useState(false);
   const [options, setOptions] = useState<OptionDescriptor[]>(
     genericOutputs.errorOptions,
   );
@@ -70,10 +69,6 @@ const Search = (): JSX.Element => {
       }
     }
     setOptions(optionsArray); // set autocomplete options
-    if (displayMovieList) {
-      dispatch(reduxActions.showMovieList());
-      setDisplayMovieList(false);
-    }
     return () => setIsLoading(false);
   }, [data, dispatch]);
 
@@ -107,22 +102,24 @@ const Search = (): JSX.Element => {
         .substring(0, removeAfter)
         .trim();
       setSelectedOptions(selected);
-      setInputValue(returnInput);
+      if (returnInput && returnInput !== "") {
+        setInputValue(returnInput);
+      }
       baseMovieSearch();
-      setDisplayMovieList(true);
+      dispatch(reduxActions.showMovieList());
     },
-    [options, baseMovieSearch],
+    [options, baseMovieSearch, dispatch],
   );
 
   // keyboard support for ease of use with the autocomplete searcher
   const keypressHandler = useCallback(
     (e: KeyboardEvent): void => {
       if (e.code === "Enter") {
-        const searchInput = options.find((option) => option.value.match(inputValue));
-        updateSelection([searchInput?.value]);
+        baseMovieSearch();
+        dispatch(reduxActions.showMovieList());
       }
     },
-    [updateSelection],
+    [baseMovieSearch, dispatch],
   );
 
   // Template

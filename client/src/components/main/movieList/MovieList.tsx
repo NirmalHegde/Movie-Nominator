@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
 import IBaseMovie from "../../../models/interfaces/BaseMovie";
 import MovieCard from "./movieCard/MovieCard";
+import "./MovieList.css";
 
 const initMovieList: IBaseMovie[] = [
   {
@@ -27,21 +28,24 @@ const MovieList = (): JSX.Element => {
   }, [shouldMovieListLoad]);
 
   return (
-    <div style={{ width: "100%" }}>
+    <div className="movieListRoot" style={{ flexGrow: 2 }}>
       <Card sectioned>
-        {componentMovieList.map((movie) => {
-          return (
-            <>
-              <MovieCard
-                key={movie.imdbID}
-                Title={movie.Title}
-                Year={movie.Year}
-                Poster={movie.Poster}
-                imdbID={movie.imdbID}
-              />
-            </>
-          );
-        })}
+        <div style={{ overflowY: "auto", height: "60vh" }}>
+          {componentMovieList.map((movie) => {
+            return (
+              <>
+                <MovieCard
+                  key={movie.imdbID}
+                  Title={movie.Title}
+                  Year={movie.Year}
+                  Poster={movie.Poster}
+                  imdbID={movie.imdbID}
+                />
+                <hr />
+              </>
+            );
+          })}
+        </div>
       </Card>
     </div>
   );

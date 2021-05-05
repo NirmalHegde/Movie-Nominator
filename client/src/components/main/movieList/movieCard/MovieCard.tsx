@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { Button, Card } from "@shopify/polaris";
+import { Button } from "@shopify/polaris";
+import { ImageMajor } from "@shopify/polaris-icons";
 import { useDispatch, useSelector } from "react-redux";
 import IBaseMovie from "../../../../models/interfaces/BaseMovie";
 import ReduxActions from "../../../../models/classes/ReduxActions";
 import { RootState } from "../../../../reducers";
+import "./MovieCard.css";
 
 const reduxActions = new ReduxActions();
 
@@ -17,12 +19,17 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
   );
   const [isDisabled, setIsDisabled] = useState(false);
   const dispatch = useDispatch();
-  const shouldCheckDisabled = useSelector((state: RootState) => state.nominationListTrigger);
+  const shouldCheckDisabled = useSelector(
+    (state: RootState) => state.nominationListTrigger,
+  );
 
   const addNominationToList = (): void => {
     if (nominationList.length < 5) {
       dispatch(reduxActions.addNomination({ Title, imdbID }));
-      window.localStorage.setItem("nominations", JSON.stringify(nominationList));
+      window.localStorage.setItem(
+        "nominations",
+        JSON.stringify(nominationList),
+      );
       dispatch(reduxActions.changeNominationList());
     } else {
       dispatch(reduxActions.showErrorBanner(true));
@@ -37,19 +44,19 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
   }, [shouldCheckDisabled]);
 
   return (
-    <div style={{ width: "40vw" }}>
-      <Card sectioned>
-        {imdbID !== "N/A" && <img src={Poster} alt={Title} />}
-        <p>{`${Title} ${Year !== "N/A" ? `(${Year})` : ""}`}</p>
-        {imdbID !== "N/A" && (
-          <Button
-            disabled={isDisabled}
-            onClick={addNominationToList}
-          >
+    <div className="CardContent">
+      {Poster !== "N/A" && <img className="Poster" src={Poster} alt={Title} />}
+      {imdbID !== "N/A" && Poster === "N/A" && <ImageMajor />}
+      &nbsp;
+      <p>{`${Title} ${Year !== "N/A" ? `(${Year})` : ""}`}</p>
+      &nbsp;
+      {imdbID !== "N/A" && (
+        <div>
+          <Button disabled={isDisabled} onClick={addNominationToList}>
             Nominate
           </Button>
-        )}
-      </Card>
+        </div>
+      )}
     </div>
   );
 };

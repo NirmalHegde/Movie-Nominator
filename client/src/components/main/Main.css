@@ -1,15 +1,26 @@
-.root {
+div.root {
 	padding: 3% 5% 5% 5%;
 	background-color: aquamarine;
 	height: 100vh;
+	overflow: hidden;
 }
 
-.title {
+div.content {
+	display: flex;
+}
+
+h1.title {
 	text-align: center;
 }
 
-.content {
+h1.content {
 	display: flex;
 	justify-content: center;
+}
+
+@media only screen and (max-width: 700px) {
+	div.content {
+		display: block;
+	}
 }
 

@@ -21,7 +21,7 @@ const NominationCard = (props: INomination): JSX.Element => {
   };
 
   return (
-    <div style={{ width: "40vw" }}>
+    <div>
       <Card sectioned>
         <p>{Title}</p>
         <Button
