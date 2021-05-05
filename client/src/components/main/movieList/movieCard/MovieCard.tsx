@@ -44,18 +44,20 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
   }, [shouldCheckDisabled]);
 
   return (
-    <div className="CardContent">
-      {Poster !== "N/A" && <img className="Poster" src={Poster} alt={Title} />}
-      {imdbID !== "N/A" && Poster === "N/A" && <ImageMajor />}
+    <div className="cardContent">
+      {Poster !== "N/A" && <img className="poster" src={Poster} alt={Title} />}
+      {imdbID !== "N/A" && Poster === "N/A" && <ImageMajor className="poster" />}
       &nbsp;
       <p>{`${Title} ${Year !== "N/A" ? `(${Year})` : ""}`}</p>
-      &nbsp;
       {imdbID !== "N/A" && (
-        <div>
-          <Button disabled={isDisabled} onClick={addNominationToList}>
-            Nominate
-          </Button>
-        </div>
+        <>
+          <div className="buttonSpacing" />
+          <div>
+            <Button primary disabled={isDisabled} onClick={addNominationToList}>
+              Nominate
+            </Button>
+          </div>
+        </>
       )}
     </div>
   );

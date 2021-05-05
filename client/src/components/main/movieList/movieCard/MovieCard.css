@@ -1,18 +1,22 @@
-div.CardContent {
+div.cardContent {
 	display: flex;
 	align-items: center;
-	background-color: aquamarine;
+	background-color: gray;
 	padding: 2%;
 	border-radius: 20px;
 }
 
-div.CardContent:hover {
+div.cardContent:hover {
 	transition: 0.3s;
 	box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 16px 0 rgba(0, 0, 0, 0.19);
 }
 
-img.Poster {
+.poster {
 	height: 15vh;
 	width: auto;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-right: 3%;
+}
+
+div.buttonSpacing {
+	flex-grow: 1;
 }

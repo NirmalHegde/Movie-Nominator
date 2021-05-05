@@ -1,6 +1,6 @@
 div.root {
 	padding: 3% 5% 5% 5%;
-	background-color: aquamarine;
+	background-color: gray;
 	height: 100vh;
 	overflow: hidden;
 }
@@ -21,6 +21,11 @@ h1.content {
 @media only screen and (max-width: 700px) {
 	div.content {
 		display: block;
+	}
+
+	div.root {
+		overflow: visible;
+		height: fit-content;
 	}
 }
 

@@ -31,6 +31,9 @@ ReactDOM.render(
               },
             },
           }}
+          theme={{
+            colorScheme: "dark",
+          }}
         >
           <App />
         </AppProvider>
