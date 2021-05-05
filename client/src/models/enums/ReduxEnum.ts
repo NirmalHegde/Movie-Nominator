@@ -4,7 +4,8 @@ enum Redux {
 	SetMovieList = "SETMOVIES",
 	AddNomination = "ADDNOMINATION",
 	RemoveNomination = "REMOVENOMINATION",
-	ChangeNominationList = "CHANGENOMINATIONS"
+	ChangeNominationList = "CHANGENOMINATIONS",
+	ShowErrorBanner = "SHOWERROR"
 }
 
 export default Redux;

@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { Banner } from "@shopify/polaris";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Search from "./search/Search";
 import "./Main.css";
@@ -9,8 +10,11 @@ import NominationList from "./nominationList/NominationList";
 import MovieInfo from "./movieInfo/MovieInfo";
 import BannerStyle from "../../models/enums/BannerStyleEnum";
 import { RootState } from "../../reducers";
+import ReduxActions from "../../models/classes/ReduxActions";
 
 require("dotenv").config();
+
+const reduxActions = new ReduxActions();
 
 const Main = (): JSX.Element => {
   const checkNominations = useSelector(
@@ -19,14 +23,18 @@ const Main = (): JSX.Element => {
   const nominationList = useSelector(
     (state: RootState) => state.nominationList,
   );
+  const errorBanner = useSelector(
+    (state: RootState) => state.errorBannerTrigger,
+  );
   const [successBanner, setSuccessBanner] = useState(false);
-  // const [errorBanner, setErrorBanner] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (nominationList.length >= 5) {
       setSuccessBanner(true);
     } else {
       setSuccessBanner(false);
+      dispatch(reduxActions.showErrorBanner(false));
     }
   }, [checkNominations, nominationList.length]);
 
@@ -53,16 +61,16 @@ const Main = (): JSX.Element => {
           chance to win!
         </Banner>
       )}
-      {/* {errorBanner && (
+      {errorBanner && (
         <Banner
-          status={BannerStyle.Success}
+          status={BannerStyle.Error}
           title="You already have 5 nominations!"
-          onDismiss={() => setSuccessBanner(false)}
+          onDismiss={() => dispatch(reduxActions.showErrorBanner(false))}
         >
           If you would like to add another nomination, please remove a
           nomination you have currently.
         </Banner>
-      )} */}
+      )}
       <MovieInfo />
     </div>
   );

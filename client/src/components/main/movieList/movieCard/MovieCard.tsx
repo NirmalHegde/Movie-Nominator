@@ -24,6 +24,8 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
       dispatch(reduxActions.addNomination({ Title, imdbID }));
       window.localStorage.setItem("nominations", JSON.stringify(nominationList));
       dispatch(reduxActions.changeNominationList());
+    } else {
+      dispatch(reduxActions.showErrorBanner(true));
     }
   };
 

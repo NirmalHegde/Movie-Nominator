@@ -3,12 +3,14 @@ import movieListTriggerReducer from "./movieListTriggerReducer";
 import movieListReducer from "./movieListReducer";
 import nominationListReducer from "./nominationListReducer";
 import nominationListTriggerReducer from "./nominationListTriggerReducer";
+import errorBannerTriggerReducer from "./errorBannerTriggerReducer";
 
-const allReducers = combineReducers({
+const rootReducer = combineReducers({
   movieListTrigger: movieListTriggerReducer,
   movieList: movieListReducer,
   nominationList: nominationListReducer,
   nominationListTrigger: nominationListTriggerReducer,
+  errorBannerTrigger: errorBannerTriggerReducer,
 });
 
 /* eslint-disable */
@@ -20,10 +22,10 @@ declare global {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-  allReducers /* preloadedState, */,
+  rootReducer /* preloadedState, */,
   composeEnhancers()
 );
 /* eslint-enable */
 
 export default store;
-export type RootState = ReturnType<typeof allReducers>
+export type RootState = ReturnType<typeof rootReducer>
