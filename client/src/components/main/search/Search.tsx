@@ -1,9 +1,14 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {
-  KeyboardEvent, useCallback, useEffect, useState,
+  KeyboardEvent,
+  useCallback,
+  useEffect,
+  useState,
+  useRef,
 } from "react";
-import { Icon, Autocomplete, Thumbnail } from "@shopify/polaris";
-import { SearchMinor, ImageMajor } from "@shopify/polaris-icons";
+import { Icon, Autocomplete } from "@shopify/polaris";
+import { SearchMinor } from "@shopify/polaris-icons";
 import { useLazyQuery } from "@apollo/client";
 import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/components/OptionList";
 
@@ -21,6 +26,7 @@ const Search = (): JSX.Element => {
   const dispatch = useDispatch();
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [displayMovieList, setDisplayMovieList] = useState(false);
   const [options, setOptions] = useState<OptionDescriptor[]>(
     genericOutputs.errorOptions,
   );
@@ -28,6 +34,7 @@ const Search = (): JSX.Element => {
   const [baseMovieSearch, { data }] = useLazyQuery(MOVIE_SEARCH, {
     variables: { title: inputValue },
   });
+  const searchRef = useRef<any>(null);
 
   // detector for when graphql query completes
   useEffect(() => {
@@ -49,14 +56,6 @@ const Search = (): JSX.Element => {
         optionsArray = movieOptions.map((movieOption) => ({
           value: movieOption.imdbID,
           label: `${movieOption.Title} (${movieOption.Year})`,
-          media: (
-            <Thumbnail
-              source={
-                movieOption.Poster !== "N/A" ? movieOption.Poster : ImageMajor
-              }
-              alt={movieOption.Title}
-            />
-          ),
         }));
       } else {
         // error handling
@@ -71,17 +70,12 @@ const Search = (): JSX.Element => {
       }
     }
     setOptions(optionsArray); // set autocomplete options
+    if (displayMovieList) {
+      dispatch(reduxActions.showMovieList());
+      setDisplayMovieList(false);
+    }
     return () => setIsLoading(false);
   }, [data, dispatch]);
-
-  // keyboard support for ease of use with the autocomplete searcher
-  const keypressHandler = useCallback((e: KeyboardEvent): void => {
-    if (e.code === "Enter") {
-      // initial function to display on movie list card
-      baseMovieSearch();
-      dispatch(reduxActions.showMovieList());
-    }
-  }, [baseMovieSearch, dispatch]);
 
   // callback for when user tyes into the search bar
   const updateText = useCallback(
@@ -102,15 +96,33 @@ const Search = (): JSX.Element => {
   // callback for if user selects an autocomplete option
   const updateSelection = useCallback(
     (selected) => {
-      const selectedValue = selected.map((selectedItem: any) => {
-        const matchedOption = options.find((option) => option.value.match(selectedItem));
-        return matchedOption && matchedOption.label;
-      });
-
+      const selectedValue: OptionDescriptor[] = selected.map(
+        (selectedItem: string) => {
+          const matchedOption = options.find((option) => option.value.match(selectedItem));
+          return matchedOption;
+        },
+      );
+      const removeAfter = (selectedValue[0].label as string).indexOf("(");
+      const returnInput = (selectedValue[0].label as string)
+        .substring(0, removeAfter)
+        .trim();
       setSelectedOptions(selected);
-      setInputValue(selectedValue);
+      setInputValue(returnInput);
+      baseMovieSearch();
+      setDisplayMovieList(true);
     },
-    [options],
+    [options, baseMovieSearch],
+  );
+
+  // keyboard support for ease of use with the autocomplete searcher
+  const keypressHandler = useCallback(
+    (e: KeyboardEvent): void => {
+      if (e.code === "Enter") {
+        const searchInput = options.find((option) => option.value.match(inputValue));
+        updateSelection([searchInput?.value]);
+      }
+    },
+    [updateSelection],
   );
 
   // Template
@@ -124,7 +136,11 @@ const Search = (): JSX.Element => {
     />
   );
   return (
-    <div onKeyPress={keypressHandler} style={{ height: "10vh" }}>
+    <div
+      ref={searchRef}
+      onKeyPress={keypressHandler}
+      style={{ height: "10vh" }}
+    >
       <Autocomplete
         options={options}
         selected={selectedOptions}

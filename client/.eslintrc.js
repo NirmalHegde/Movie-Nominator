@@ -14,6 +14,7 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint", "react-hooks"],
   rules: {
+    "no-case-declarations": 0,
     semi: [2, "always"],
     quotes: [2, "double"],
     "no-use-before-define": "off",
