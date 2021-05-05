@@ -28,8 +28,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "npm run lint && npm start",
-    "lint": "tsc && eslint --quiet --fix --ext ts,tsx src/."
+    "lint": "tsc && eslint --quiet --fix --ext ts,tsx src/.",
+    "dev": "npm run lint && npm start"
   },
   "eslintConfig": {
     "extends": [

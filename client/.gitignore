@@ -19,6 +19,7 @@
 .env.production.local
 .env
 package-lock.json
+src/react-app-env.d.ts
 
 npm-debug.log*
 yarn-debug.log*

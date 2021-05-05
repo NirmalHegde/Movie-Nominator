@@ -3,7 +3,9 @@ import { Button, Card } from "@shopify/polaris";
 import { useDispatch, useSelector } from "react-redux";
 import INomination from "../../../../models/Nomination";
 import { RootState } from "../../../../reducers";
-import { removeNomination, changeNominationList } from "../../../../actions";
+import ReduxActions from "../../../../actions";
+
+const reduxActions = new ReduxActions();
 
 const NominationCard = (props: INomination): JSX.Element => {
   const { Title } = props;
@@ -13,9 +15,9 @@ const NominationCard = (props: INomination): JSX.Element => {
   const dispatch = useDispatch();
 
   const removeNominationFromList = (): void => {
-    dispatch(removeNomination(props));
+    dispatch(reduxActions.removeNomination(props));
     window.localStorage.setItem("nominations", JSON.stringify(nominationList));
-    dispatch(changeNominationList());
+    dispatch(reduxActions.changeNominationList());
   };
 
   return (

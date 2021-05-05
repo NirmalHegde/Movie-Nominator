@@ -1,36 +1,39 @@
+/* eslint-disable class-methods-use-this */
 import IBaseMovie from "../models/BaseMovie";
 import INomination from "../models/Nomination";
-import ReduxActions from "../models/ReduxActions";
+import Redux from "../models/Redux";
 
-export function showMovieList(): {type: string} {
-  return {
-    type: ReduxActions.ShowMovieList,
-  };
-}
+export default class ReduxActions {
+  public showMovieList(): {type: string} {
+    return {
+      type: Redux.ShowMovieList,
+    };
+  }
 
-export function changeNominationList(): {type: string} {
-  return {
-    type: ReduxActions.ChangeNominationList,
-  };
-}
+  public changeNominationList(): {type: string} {
+    return {
+      type: Redux.ChangeNominationList,
+    };
+  }
 
-export function setMovieList(movieList: IBaseMovie[]): {type: string, payload: IBaseMovie[]} {
-  return {
-    type: ReduxActions.SetMovieList,
-    payload: movieList,
-  };
-}
+  public setMovieList(movieList: IBaseMovie[]): {type: string, payload: IBaseMovie[]} {
+    return {
+      type: Redux.SetMovieList,
+      payload: movieList,
+    };
+  }
 
-export function addNomination(nomination: INomination): {type: string, payload: INomination} {
-  return {
-    type: ReduxActions.AddNomination,
-    payload: nomination,
-  };
-}
+  public addNomination(nomination: INomination): {type: string, payload: INomination} {
+    return {
+      type: Redux.AddNomination,
+      payload: nomination,
+    };
+  }
 
-export function removeNomination(nomination: INomination): {type: string, payload: INomination} {
-  return {
-    type: ReduxActions.RemoveNomination,
-    payload: nomination,
-  };
+  public removeNomination(nomination: INomination): {type: string, payload: INomination} {
+    return {
+      type: Redux.RemoveNomination,
+      payload: nomination,
+    };
+  }
 }

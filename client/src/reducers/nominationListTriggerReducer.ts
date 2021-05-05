@@ -1,7 +1,7 @@
-import ReduxActions from "../models/ReduxActions";
+import Redux from "../models/Redux";
 
 interface NominationListTriggerReducer {
-  type: ReduxActions;
+  type: Redux;
 }
 
 const nominationListTriggerReducer = (
@@ -9,7 +9,7 @@ const nominationListTriggerReducer = (
   action: NominationListTriggerReducer,
 ): boolean => {
   switch (action.type) {
-  case ReduxActions.ChangeNominationList:
+  case Redux.ChangeNominationList:
     return !state;
   default:
     return state;

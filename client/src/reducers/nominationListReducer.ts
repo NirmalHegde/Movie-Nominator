@@ -1,11 +1,11 @@
 import INomination from "../models/Nomination";
-import ReduxActions from "../models/ReduxActions";
+import Redux from "../models/Redux";
 import GenericOutputs from "../models/GenericOutputs";
 
 const genericOutputs = new GenericOutputs();
 
 interface NominationListReducer {
-  type: ReduxActions;
+  type: Redux;
   payload: INomination;
 }
 
@@ -16,10 +16,10 @@ const nominationListReducer = (
 ): INomination[] => {
   const returnState: INomination[] = state;
   switch (action.type) {
-  case ReduxActions.AddNomination:
+  case Redux.AddNomination:
     returnState.push(action.payload);
     return returnState;
-  case ReduxActions.RemoveNomination:
+  case Redux.RemoveNomination:
     return returnState.filter((nomination) => nomination.imdbID !== action.payload.imdbID);
   default:
     return returnState;

@@ -1,9 +1,9 @@
 import IBaseMovie from "../models/BaseMovie";
 import GenericOutputs from "../models/GenericOutputs";
-import ReduxActions from "../models/ReduxActions";
+import Redux from "../models/Redux";
 
 interface MovieListReducer {
-  type: ReduxActions;
+  type: Redux;
   payload: IBaseMovie[];
 }
 
@@ -13,7 +13,7 @@ const movieListReducer = (
   action: MovieListReducer,
 ): IBaseMovie[] => {
   switch (action.type) {
-  case ReduxActions.SetMovieList:
+  case Redux.SetMovieList:
     return action.payload;
   default:
     return state;

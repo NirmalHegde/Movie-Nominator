@@ -2,8 +2,10 @@ import React from "react";
 import { Button, Card } from "@shopify/polaris";
 import { useDispatch, useSelector } from "react-redux";
 import IBaseMovie from "../../../../models/BaseMovie";
-import { addNomination, changeNominationList } from "../../../../actions";
+import ReduxActions from "../../../../actions";
 import { RootState } from "../../../../reducers";
+
+const reduxActions = new ReduxActions();
 
 const MovieCard = (props: IBaseMovie): JSX.Element => {
   const {
@@ -15,9 +17,9 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
   const dispatch = useDispatch();
 
   const addNominationToList = (): void => {
-    dispatch(addNomination({ Title, imdbID }));
+    dispatch(reduxActions.addNomination({ Title, imdbID }));
     window.localStorage.setItem("nominations", JSON.stringify(nominationList));
-    dispatch(changeNominationList());
+    dispatch(reduxActions.changeNominationList());
   };
 
   return (

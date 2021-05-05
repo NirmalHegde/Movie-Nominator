@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-enum ReduxActions {
+enum Redux {
 	ShowMovieList = "SHOWLIST",
 	SetMovieList = "SETMOVIES",
 	AddNomination = "ADDNOMINATION",
@@ -7,4 +7,4 @@ enum ReduxActions {
 	ChangeNominationList = "CHANGENOMINATIONS"
 }
 
-export default ReduxActions;
+export default Redux;

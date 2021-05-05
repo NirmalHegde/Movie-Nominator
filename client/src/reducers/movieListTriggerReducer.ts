@@ -1,7 +1,7 @@
-import ReduxActions from "../models/ReduxActions";
+import Redux from "../models/Redux";
 
 interface MovieListTriggerReducer {
-  type: ReduxActions;
+  type: Redux;
 }
 
 const movieListTriggerReducer = (
@@ -9,7 +9,7 @@ const movieListTriggerReducer = (
   action: MovieListTriggerReducer,
 ): boolean => {
   switch (action.type) {
-  case ReduxActions.ShowMovieList:
+  case Redux.ShowMovieList:
     return !state;
   default:
     return state;

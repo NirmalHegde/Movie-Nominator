@@ -10,11 +10,12 @@ import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/compone
 import { useDispatch } from "react-redux";
 import IBaseMovie from "../../../models/BaseMovie";
 import { MOVIE_SEARCH } from "../../../graphQL/queries";
-import { setMovieList, showMovieList } from "../../../actions";
+import ReduxActions from "../../../actions";
 import GenericOutputs from "../../../models/GenericOutputs";
 
 const queryLimit = 2;
 const genericOutputs = new GenericOutputs();
+const reduxActions = new ReduxActions();
 
 const Search = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const Search = (): JSX.Element => {
       if (movieOptions) {
         // null check
         // set redux state (for use later) and autocomplete options to query results
-        dispatch(setMovieList(movieOptions));
+        dispatch(reduxActions.setMovieList(movieOptions));
         optionsArray = movieOptions.map((movieOption) => ({
           value: movieOption.imdbID,
           label: `${movieOption.Title} (${movieOption.Year})`,
@@ -59,14 +60,14 @@ const Search = (): JSX.Element => {
         }));
       } else {
         // error handling
-        dispatch(setMovieList(genericOutputs.errorMovieList));
+        dispatch(reduxActions.setMovieList(genericOutputs.errorMovieList));
         optionsArray = genericOutputs.errorOptions;
       }
     } else {
       // error handling
       optionsArray = genericOutputs.errorOptions;
       if (data) {
-        dispatch(setMovieList(genericOutputs.errorMovieList));
+        dispatch(reduxActions.setMovieList(genericOutputs.errorMovieList));
       }
     }
     setOptions(optionsArray); // set autocomplete options
@@ -78,7 +79,7 @@ const Search = (): JSX.Element => {
     if (e.code === "Enter") {
       // initial function to display on movie list card
       baseMovieSearch();
-      dispatch(showMovieList());
+      dispatch(reduxActions.showMovieList());
     }
   }, [baseMovieSearch, dispatch]);
 
@@ -112,6 +113,7 @@ const Search = (): JSX.Element => {
     [options],
   );
 
+  // Template
   const textField = (
     <Autocomplete.TextField
       onChange={updateText}
