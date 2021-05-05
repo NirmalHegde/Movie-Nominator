@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
-import IBaseMovie from "../models/BaseMovie";
-import INomination from "../models/Nomination";
-import Redux from "../models/ReduxEnum";
+import IBaseMovie from "../interfaces/BaseMovie";
+import INomination from "../interfaces/Nomination";
+import Redux from "../enums/ReduxEnum";
 
 export default class ReduxActions {
   public showMovieList(): {type: string} {

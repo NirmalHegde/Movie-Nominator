@@ -8,10 +8,10 @@ import { useLazyQuery } from "@apollo/client";
 import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/components/OptionList";
 
 import { useDispatch } from "react-redux";
-import IBaseMovie from "../../../models/BaseMovie";
+import IBaseMovie from "../../../models/interfaces/BaseMovie";
 import { MOVIE_SEARCH } from "../../../graphQL/queries";
-import ReduxActions from "../../../actions";
-import GenericOutputs from "../../../models/GenericOutputs";
+import ReduxActions from "../../../models/classes/ReduxActions";
+import GenericOutputs from "../../../models/classes/GenericOutputs";
 
 const queryLimit = 2;
 const genericOutputs = new GenericOutputs();

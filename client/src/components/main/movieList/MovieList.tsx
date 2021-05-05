@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Card } from "@shopify/polaris";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
-import IBaseMovie from "../../../models/BaseMovie";
+import IBaseMovie from "../../../models/interfaces/BaseMovie";
 import MovieCard from "./movieCard/MovieCard";
 
 const initMovieList: IBaseMovie[] = [

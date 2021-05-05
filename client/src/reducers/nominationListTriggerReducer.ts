@@ -1,4 +1,4 @@
-import Redux from "../models/ReduxEnum";
+import Redux from "../models/enums/ReduxEnum";
 
 interface NominationListTriggerReducer {
   type: Redux;

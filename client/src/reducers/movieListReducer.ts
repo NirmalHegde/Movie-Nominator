@@ -1,6 +1,6 @@
-import IBaseMovie from "../models/BaseMovie";
-import GenericOutputs from "../models/GenericOutputs";
-import Redux from "../models/ReduxEnum";
+import IBaseMovie from "../models/interfaces/BaseMovie";
+import GenericOutputs from "../models/classes/GenericOutputs";
+import Redux from "../models/enums/ReduxEnum";
 
 interface MovieListReducer {
   type: Redux;

@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/components/OptionList";
-import IBaseMovie from "./BaseMovie";
-import INomination from "./Nomination";
+import IBaseMovie from "../interfaces/BaseMovie";
+import INomination from "../interfaces/Nomination";
 
 export default class GenericOutputs {
 	public initMovieList: IBaseMovie[] = [

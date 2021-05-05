@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card } from "@shopify/polaris";
 import { useDispatch, useSelector } from "react-redux";
-import IBaseMovie from "../../../../models/BaseMovie";
-import ReduxActions from "../../../../actions";
+import IBaseMovie from "../../../../models/interfaces/BaseMovie";
+import ReduxActions from "../../../../models/classes/ReduxActions";
 import { RootState } from "../../../../reducers";
 
 const reduxActions = new ReduxActions();
@@ -31,7 +31,6 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
     const result = nominationList.some((nomination) => {
       return nomination.imdbID === imdbID;
     });
-
     setIsDisabled(result);
   }, [shouldCheckDisabled]);
 

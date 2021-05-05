@@ -1,6 +1,6 @@
-import INomination from "../models/Nomination";
-import Redux from "../models/ReduxEnum";
-import GenericOutputs from "../models/GenericOutputs";
+import INomination from "../models/interfaces/Nomination";
+import Redux from "../models/enums/ReduxEnum";
+import GenericOutputs from "../models/classes/GenericOutputs";
 
 const genericOutputs = new GenericOutputs();
 
