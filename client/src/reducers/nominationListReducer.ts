@@ -1,5 +1,5 @@
 import INomination from "../models/Nomination";
-import Redux from "../models/Redux";
+import Redux from "../models/ReduxEnum";
 import GenericOutputs from "../models/GenericOutputs";
 
 const genericOutputs = new GenericOutputs();

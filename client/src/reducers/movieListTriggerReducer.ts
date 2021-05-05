@@ -1,4 +1,4 @@
-import Redux from "../models/Redux";
+import Redux from "../models/ReduxEnum";
 
 interface MovieListTriggerReducer {
   type: Redux;

@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import { Button, Card } from "@shopify/polaris";
 import { useDispatch, useSelector } from "react-redux";
 import IBaseMovie from "../../../../models/BaseMovie";
@@ -14,13 +15,25 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
   const nominationList = useSelector(
     (state: RootState) => state.nominationList,
   );
+  const [isDisabled, setIsDisabled] = useState(false);
   const dispatch = useDispatch();
+  const shouldCheckDisabled = useSelector((state: RootState) => state.nominationListTrigger);
 
   const addNominationToList = (): void => {
-    dispatch(reduxActions.addNomination({ Title, imdbID }));
-    window.localStorage.setItem("nominations", JSON.stringify(nominationList));
-    dispatch(reduxActions.changeNominationList());
+    if (nominationList.length < 5) {
+      dispatch(reduxActions.addNomination({ Title, imdbID }));
+      window.localStorage.setItem("nominations", JSON.stringify(nominationList));
+      dispatch(reduxActions.changeNominationList());
+    }
   };
+
+  useEffect(() => {
+    const result = nominationList.some((nomination) => {
+      return nomination.imdbID === imdbID;
+    });
+
+    setIsDisabled(result);
+  }, [shouldCheckDisabled]);
 
   return (
     <div style={{ width: "40vw" }}>
@@ -29,9 +42,7 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
         <p>{`${Title} ${Year !== "N/A" ? `(${Year})` : ""}`}</p>
         {imdbID !== "N/A" && (
           <Button
-            disabled={nominationList.some((nomination) => {
-              return nomination.imdbID === imdbID;
-            })}
+            disabled={isDisabled}
             onClick={addNominationToList}
           >
             Nominate
