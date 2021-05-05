@@ -10,16 +10,17 @@ interface NominationListReducer {
 }
 
 const nominationListReducer = (
-  state = genericOutputs.initNominationList,
+  state: INomination[] = JSON.parse(window.localStorage.getItem("nominations") as string)
+    || genericOutputs.initNominationList,
   action: NominationListReducer,
 ): INomination[] => {
-  const returnState = state;
+  const returnState: INomination[] = state;
   switch (action.type) {
   case ReduxActions.AddNomination:
     returnState.push(action.payload);
     return returnState;
   case ReduxActions.RemoveNomination:
-    return returnState.filter((nomination) => nomination !== action.payload);
+    return returnState.filter((nomination) => nomination.imdbID !== action.payload.imdbID);
   default:
     return returnState;
   }

@@ -8,6 +8,12 @@ export function showMovieList(): {type: string} {
   };
 }
 
+export function changeNominationList(): {type: string} {
+  return {
+    type: ReduxActions.ChangeNominationList,
+  };
+}
+
 export function setMovieList(movieList: IBaseMovie[]): {type: string, payload: IBaseMovie[]} {
   return {
     type: ReduxActions.SetMovieList,

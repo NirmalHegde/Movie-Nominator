@@ -20,8 +20,10 @@ const baseOptions: OptionDescriptor[] = [
   },
 ];
 
-const local = localStorage.getItem("nominations");
-const initNominationList: INomination[] = local ? JSON.parse(local) : [];
+const initNominationList: INomination[] = [{
+  Title: "No nominations currently",
+  imdbID: "N/A",
+}];
 
 const errorOptionsArray: OptionDescriptor[] = [
   {

@@ -20,28 +20,30 @@ const Search = (): JSX.Element => {
   const dispatch = useDispatch();
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [options, setOptions] = useState<OptionDescriptor[]>(genericOutputs.errorOptions);
+  const [options, setOptions] = useState<OptionDescriptor[]>(
+    genericOutputs.errorOptions,
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [baseMovieSearch, { data }] = useLazyQuery(MOVIE_SEARCH, {
     variables: { title: inputValue },
   });
 
-  const keypressHandler = (e: KeyboardEvent): void => {
-    if (e.code === "Enter") {
-      baseMovieSearch();
-      dispatch(showMovieList());
-    }
-  };
-
+  // detector for when graphql query completes
   useEffect(() => {
     let optionsArray: OptionDescriptor[];
+
+    // check if data exists
     if (data?.baseMovieSearch) {
+      // remove all options that are not movies
       const movieOptions: IBaseMovie[] = data.baseMovieSearch.filter(
         (dataIndex: IBaseMovie) => {
           return dataIndex.Type === "movie";
         },
       );
+
       if (movieOptions) {
+        // null check
+        // set redux state (for use later) and autocomplete options to query results
         dispatch(setMovieList(movieOptions));
         optionsArray = movieOptions.map((movieOption) => ({
           value: movieOption.imdbID,
@@ -56,19 +58,31 @@ const Search = (): JSX.Element => {
           ),
         }));
       } else {
+        // error handling
         dispatch(setMovieList(genericOutputs.errorMovieList));
         optionsArray = genericOutputs.errorOptions;
       }
     } else {
+      // error handling
       optionsArray = genericOutputs.errorOptions;
       if (data) {
         dispatch(setMovieList(genericOutputs.errorMovieList));
       }
     }
-    setOptions(optionsArray);
+    setOptions(optionsArray); // set autocomplete options
     return () => setIsLoading(false);
   }, [data, dispatch]);
 
+  // keyboard support for ease of use with the autocomplete searcher
+  const keypressHandler = useCallback((e: KeyboardEvent): void => {
+    if (e.code === "Enter") {
+      // initial function to display on movie list card
+      baseMovieSearch();
+      dispatch(showMovieList());
+    }
+  }, [baseMovieSearch, dispatch]);
+
+  // callback for when user tyes into the search bar
   const updateText = useCallback(
     (value: string) => {
       setInputValue(value);
@@ -84,6 +98,7 @@ const Search = (): JSX.Element => {
     [baseMovieSearch],
   );
 
+  // callback for if user selects an autocomplete option
   const updateSelection = useCallback(
     (selected) => {
       const selectedValue = selected.map((selectedItem: any) => {
@@ -107,7 +122,7 @@ const Search = (): JSX.Element => {
     />
   );
   return (
-    <div onKeyPress={(e) => keypressHandler(e)} style={{ height: "10vh" }}>
+    <div onKeyPress={keypressHandler} style={{ height: "10vh" }}>
       <Autocomplete
         options={options}
         selected={selectedOptions}

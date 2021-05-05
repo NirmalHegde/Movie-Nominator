@@ -3,7 +3,8 @@ enum ReduxActions {
 	ShowMovieList = "SHOWLIST",
 	SetMovieList = "SETMOVIES",
 	AddNomination = "ADDNOMINATION",
-	RemoveNomination = "REMOVENOMINATION"
+	RemoveNomination = "REMOVENOMINATION",
+	ChangeNominationList = "CHANGENOMINATIONS"
 }
 
 export default ReduxActions;
