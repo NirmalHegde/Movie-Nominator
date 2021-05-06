@@ -1,10 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { Card } from "@shopify/polaris";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NominationCard from "./nominationCard/NominationCard";
 import { RootState } from "../../../reducers";
 import "./NominationList.css";
+import ReduxActions from "../../../models/classes/ReduxActions";
+
+const reduxActions = new ReduxActions();
 
 const NominationList = (): JSX.Element => {
   const nominationList = useSelector(
@@ -16,9 +19,13 @@ const NominationList = (): JSX.Element => {
   const [componentNominationList, setComponentNominationList] = useState(
     nominationList,
   );
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setComponentNominationList(nominationList);
+    if (nominationList.length === 5) {
+      dispatch(reduxActions.showSuccessBanner(true));
+    }
   }, [shouldNominationListUpdate]);
 
   return (

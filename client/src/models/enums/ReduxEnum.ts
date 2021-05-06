@@ -5,7 +5,8 @@ enum Redux {
 	AddNomination = "ADDNOMINATION",
 	RemoveNomination = "REMOVENOMINATION",
 	ChangeNominationList = "CHANGENOMINATIONS",
-	ShowErrorBanner = "SHOWERROR"
+	ShowErrorBanner = "SHOWERROR",
+	ShowSuccessBanner = "SHOWSUCCESS"
 }
 
 export default Redux;

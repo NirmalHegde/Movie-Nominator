@@ -43,4 +43,11 @@ export default class ReduxActions {
       payload: error,
     };
   }
+
+  public showSuccessBanner(error: boolean): {type: Redux, payload: boolean} {
+    return {
+      type: Redux.ShowSuccessBanner,
+      payload: error,
+    };
+  }
 }

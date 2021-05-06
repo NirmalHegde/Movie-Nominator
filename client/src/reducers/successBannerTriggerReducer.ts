@@ -1,16 +1,16 @@
 import Redux from "../models/enums/ReduxEnum";
 
-interface ErrorBannerTriggerReducer {
+interface SuccessBannerTriggerReducer {
   type: Redux;
 	payload: boolean
 }
 
-const errorBannerTriggerReducer = (
+const successBannerTriggerReducer = (
   state = false,
-  action: ErrorBannerTriggerReducer,
+  action: SuccessBannerTriggerReducer,
 ): boolean => {
   switch (action.type) {
-  case Redux.ShowErrorBanner:
+  case Redux.ShowSuccessBanner:
     if (action.payload === true) {
       return true;
     }
@@ -21,4 +21,4 @@ const errorBannerTriggerReducer = (
   }
 };
 
-export default errorBannerTriggerReducer;
+export default successBannerTriggerReducer;
