@@ -1,10 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, {
-  KeyboardEvent,
   useCallback,
   useEffect,
   useState,
-  useRef,
 } from "react";
 import { Icon, Autocomplete } from "@shopify/polaris";
 import { SearchMinor } from "@shopify/polaris-icons";
@@ -18,7 +16,6 @@ import ReduxActions from "../../../models/classes/ReduxActions";
 import GenericOutputs from "../../../models/classes/GenericOutputs";
 import "./Search.css";
 
-const queryLimit = 2;
 const genericOutputs = new GenericOutputs();
 const reduxActions = new ReduxActions();
 
@@ -33,7 +30,10 @@ const Search = (): JSX.Element => {
   const [baseMovieSearch, { data }] = useLazyQuery(MOVIE_SEARCH, {
     variables: { title: inputValue },
   });
-  const searchRef = useRef<any>(null);
+
+  useEffect(() => {
+    baseMovieSearch();
+  }, [inputValue, baseMovieSearch]);
 
   // detector for when graphql query completes
   useEffect(() => {
@@ -69,6 +69,7 @@ const Search = (): JSX.Element => {
       }
     }
     setOptions(optionsArray); // set autocomplete options
+    dispatch(reduxActions.showMovieList());
     return () => setIsLoading(false);
   }, [data, dispatch]);
 
@@ -80,7 +81,7 @@ const Search = (): JSX.Element => {
         setIsLoading(true);
         setOptions(genericOutputs.initOptions);
         setIsLoading(false);
-      } else if (value.length % queryLimit === 0) {
+      } else {
         setIsLoading(true);
         baseMovieSearch();
       }
@@ -105,21 +106,18 @@ const Search = (): JSX.Element => {
       if (returnInput && returnInput !== "") {
         setInputValue(returnInput);
       }
-      baseMovieSearch();
-      dispatch(reduxActions.showMovieList());
     },
-    [options, baseMovieSearch, dispatch],
+    [options],
   );
 
   // keyboard support for ease of use with the autocomplete searcher
   const keypressHandler = useCallback(
-    (e: KeyboardEvent): void => {
+    (e: any): void => {
       if (e.code === "Enter") {
-        baseMovieSearch();
-        dispatch(reduxActions.showMovieList());
+        setOptions([]);
       }
     },
-    [baseMovieSearch, dispatch],
+    [],
   );
 
   // Template
@@ -134,7 +132,6 @@ const Search = (): JSX.Element => {
   );
   return (
     <div
-      ref={searchRef}
       onKeyPress={keypressHandler}
       style={{ height: "10vh" }}
     >
