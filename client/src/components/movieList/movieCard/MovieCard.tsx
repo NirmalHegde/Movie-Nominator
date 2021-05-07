@@ -48,7 +48,6 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
   }, [fullMovie, triggerModal]);
 
   useEffect(() => {
-    console.log(nominationList);
     const result = nominationList.some((nomination) => {
       return nomination.imdbID === imdbID;
     });

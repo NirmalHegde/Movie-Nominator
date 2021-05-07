@@ -22,7 +22,6 @@ const MovieInfo: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(nominationList);
     const result = nominationList.some((nomination) => {
       return nomination.imdbID === movie.imdbID;
     });
