@@ -1,3 +1,13 @@
+/* theming */
 * {
 	color: white;
+}
+
+h1 {
+	font-family: Limelight;
+}
+
+h2 {
+	font-family: Poppins;
+	font-weight: 300;
 }

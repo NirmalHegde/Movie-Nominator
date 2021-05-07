@@ -1,0 +1,7 @@
+div.nominationCard {
+	display: flex;
+}
+
+div.spacing {
+	flex-grow: 1;
+}

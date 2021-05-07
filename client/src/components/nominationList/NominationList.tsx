@@ -33,23 +33,30 @@ const NominationList = (): JSX.Element => {
 
   return (
     <div className="nominationListRoot">
-      <Card sectioned>
-        <div>
-          <h1>Your Nominations</h1>
-          {componentNominationList.map((nomination) => {
-            return (
-              <>
-                <NominationCard
-                  key={nomination.imdbID}
-                  Title={nomination.Title}
-                  imdbID={nomination.imdbID}
-                />
-              </>
-            );
-          })}
-          {componentNominationList.length < 1 && <p>No nominations currently</p>}
-        </div>
-      </Card>
+      <div className="border">
+        <Card sectioned>
+          <div>
+            <h1>Your Nominations</h1>
+            {componentNominationList.length > 0 && (
+              <ul>
+                {componentNominationList.map((nomination, index) => {
+                  return (
+                    <>
+                      <NominationCard
+                        key={nomination.imdbID}
+                        Title={nomination.Title}
+                        imdbID={nomination.imdbID}
+                      />
+                      {index !== componentNominationList.length - 1 && <br />}
+                    </>
+                  );
+                })}
+              </ul>
+            )}
+            {componentNominationList.length < 1 && <p>No nominations currently</p>}
+          </div>
+        </Card>
+      </div>
     </div>
   );
 };

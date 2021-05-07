@@ -1,21 +1,39 @@
 div.root {
-	padding: 3% 5% 5% 5%;
-	background-color: gray;
+	padding: 4% 5% 5% 5%;
+	background-image: linear-gradient(to bottom right,#111316, #243b55);
 	height: 100vh;
 	overflow: hidden;
 }
 
-div.content {
-	display: flex;
+div.border {
+	border-radius: 7px;
+	box-shadow: 0 0px 8px 0 rgba(255, 255, 255, 0.2), 0 0px 20px 0 rgba(255, 255, 255, 0.19);
 }
 
-h1.title {
+div.heading {
+	display: flex;
+	justify-content: center;
+}
+
+div.title {
+	display: table;
+	font-size: 3rem;
+	line-height: 1.0;
+}
+
+div.title > h1 {
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+h2.subtitle {
+	font-size: 1.5rem;
 	text-align: center;
 }
 
-h1.content {
+div.content {
 	display: flex;
-	justify-content: center;
 }
 
 @media only screen and (max-width: 700px) {

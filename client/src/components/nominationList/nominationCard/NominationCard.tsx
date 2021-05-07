@@ -1,9 +1,10 @@
 import React from "react";
-import { Button, Card } from "@shopify/polaris";
+import { Button } from "@shopify/polaris";
 import { useDispatch, useSelector } from "react-redux";
 import INomination from "../../../models/interfaces/Nomination";
 import { RootState } from "../../../reducers";
 import ReduxActions from "../../../models/classes/ReduxActions";
+import "./NominationCard.css";
 
 const reduxActions = new ReduxActions();
 
@@ -21,16 +22,18 @@ const NominationCard = (props: INomination): JSX.Element => {
   };
 
   return (
-    <div>
-      <Card sectioned>
-        <p>{Title}</p>
+    <li>
+      <div className="nominationCard">
+        {Title}
+        <div className="spacing" />
         <Button
+          destructive
           onClick={removeNominationFromList}
         >
           Remove
         </Button>
-      </Card>
-    </div>
+      </div>
+    </li>
   );
 };
 

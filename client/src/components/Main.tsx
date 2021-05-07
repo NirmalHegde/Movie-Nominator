@@ -15,11 +15,20 @@ const Main: React.FC = (): JSX.Element => {
       <Notification />
       <MovieInfo />
       <div className="root">
-        <h1 className="title">🎬 Welcome to the Shoppies! 🎬</h1>
-        <h2 className="title">
-          Nominate your favourite films for the esteemed Shoscars, given out every
-          year at the annual Shoppies Convention in Ottawa, Ontario!
-        </h2>
+        <div className="heading">
+          <div className="title">
+            <h1>🎬&nbsp;</h1>
+            <h1>Welcome to the Shoppies!</h1>
+            <h1>&nbsp;🎬</h1>
+          </div>
+        </div>
+        <br />
+        <div className="heading">
+          <h2 className="subtitle">
+            Nominate your favourite films for the esteemed Shoscars, given out every
+            year at the annual Shoppies Convention in Ottawa, Ontario!
+          </h2>
+        </div>
         <br />
         <Search />
         <div className="content">

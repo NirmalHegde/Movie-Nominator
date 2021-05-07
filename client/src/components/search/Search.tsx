@@ -133,15 +133,17 @@ const Search = (): JSX.Element => {
   return (
     <div
       onKeyPress={keypressHandler}
-      style={{ height: "10vh" }}
+      style={{ height: "9vh" }}
     >
-      <Autocomplete
-        options={options}
-        selected={selectedOptions}
-        onSelect={updateSelection}
-        textField={textField}
-        loading={isLoading}
-      />
+      <div className="border">
+        <Autocomplete
+          options={options}
+          selected={selectedOptions}
+          onSelect={updateSelection}
+          textField={textField}
+          loading={isLoading}
+        />
+      </div>
     </div>
   );
 };

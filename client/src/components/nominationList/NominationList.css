@@ -1,5 +1,6 @@
 div.nominationListRoot {
 	flex-grow: 1;
+	max-width: 30vw;
 	margin-left: 3%;
 }
 

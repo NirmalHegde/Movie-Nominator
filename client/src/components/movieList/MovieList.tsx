@@ -28,29 +28,31 @@ const MovieList = (): JSX.Element => {
   }, [shouldMovieListLoad]);
 
   return (
-    <div className="movieListRoot" style={{ flexGrow: 2 }}>
-      <Card sectioned>
-        <div style={{ overflowY: "auto", height: "60vh" }}>
-          {componentMovieList.map((movie) => {
-            if (movie.imdbID === "N/A") {
+    <div className="movieListRoot">
+      <div className="border">
+        <Card sectioned>
+          <div style={{ overflowY: "auto", height: "60vh" }}>
+            {componentMovieList.map((movie) => {
+              if (movie.imdbID === "N/A") {
+                return (
+                  <p>Start by searching above!</p>
+                );
+              }
               return (
-                <p>Start by searching above!</p>
+                <>
+                  <MovieCard
+                    key={movie.imdbID}
+                    Title={movie.Title}
+                    Year={movie.Year}
+                    Poster={movie.Poster}
+                    imdbID={movie.imdbID}
+                  />
+                </>
               );
-            }
-            return (
-              <>
-                <MovieCard
-                  key={movie.imdbID}
-                  Title={movie.Title}
-                  Year={movie.Year}
-                  Poster={movie.Poster}
-                  imdbID={movie.imdbID}
-                />
-              </>
-            );
-          })}
-        </div>
-      </Card>
+            })}
+          </div>
+        </Card>
+      </div>
     </div>
   );
 };
