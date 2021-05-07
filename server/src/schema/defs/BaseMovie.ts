@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLString } from 'graphql'
 
 const BaseMovie = new GraphQLObjectType({
-  name: 'Movies',
+  name: 'BaseMovie',
   fields: () => ({
     Title: {
       type: GraphQLString,

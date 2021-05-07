@@ -1,7 +1,7 @@
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql'
 
-const BaseMovie = new GraphQLObjectType({
-  name: 'Movies',
+const FullMovie = new GraphQLObjectType({
+  name: 'FullMovie',
   fields: () => ({
     Title: {
       type: GraphQLString,
@@ -42,8 +42,7 @@ const BaseMovie = new GraphQLObjectType({
 		Production: {
 			type: GraphQLString,
 		}
-
   }),
 })
 
-export default BaseMovie
+export default FullMovie
