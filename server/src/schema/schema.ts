@@ -7,6 +7,7 @@ import {
 } from 'graphql'
 import { IBaseMovie } from '../models/baseMovie'
 import BaseMovie from './defs/BaseMovie'
+import FullMovie from './defs/FullMovie'
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
@@ -25,6 +26,20 @@ const RootQuery = new GraphQLObjectType({
         return result
       },
     },
+    fullMovie: {
+      type: new GraphQLList(FullMovie),
+      args: { id: { type: GraphQLString }},
+      async resolve(parent, args) {
+        const result: IBaseMovie[] = await axios
+          .get(
+            `http://www.omdbapi.com/?i=${args.id}&apikey=${process.env.API_KEY}`,
+          )
+          .then((res) => res.data)
+          .catch((err) => console.log(err))
+        
+        return result
+      },
+    }
   },
 })
 

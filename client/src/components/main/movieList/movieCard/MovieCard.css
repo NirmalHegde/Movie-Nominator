@@ -4,6 +4,7 @@ div.cardContent {
 	background-color: gray;
 	padding: 2%;
 	border-radius: 20px;
+	margin-bottom: 3%;
 }
 
 div.cardContent:hover {

@@ -32,6 +32,11 @@ const MovieList = (): JSX.Element => {
       <Card sectioned>
         <div style={{ overflowY: "auto", height: "60vh" }}>
           {componentMovieList.map((movie) => {
+            if (movie.imdbID === "N/A") {
+              return (
+                <p>Start by searching above!</p>
+              );
+            }
             return (
               <>
                 <MovieCard
@@ -41,7 +46,6 @@ const MovieList = (): JSX.Element => {
                   Poster={movie.Poster}
                   imdbID={movie.imdbID}
                 />
-                <hr />
               </>
             );
           })}

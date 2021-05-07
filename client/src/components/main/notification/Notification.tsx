@@ -2,10 +2,11 @@
 import React from "react";
 import NotificationErrorBanner from "./notificationBanner/NotificationErrorBanner";
 import NotificationSuccessBanner from "./notificationBanner/NotificationSuccessBanner";
+import "./Notification.css";
 
 const Notification = (): JSX.Element => {
   return (
-    <div>
+    <div className="notificationRoot">
       <NotificationErrorBanner />
       <NotificationSuccessBanner />
     </div>

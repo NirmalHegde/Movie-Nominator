@@ -25,6 +25,9 @@ const NominationList = (): JSX.Element => {
     setComponentNominationList(nominationList);
     if (nominationList.length === 5) {
       dispatch(reduxActions.showSuccessBanner(true));
+    } else {
+      dispatch(reduxActions.showSuccessBanner(false));
+      dispatch(reduxActions.showErrorBanner(false));
     }
   }, [shouldNominationListUpdate]);
 
@@ -44,6 +47,7 @@ const NominationList = (): JSX.Element => {
               </>
             );
           })}
+          {componentNominationList.length < 1 && <p>No nominations currently</p>}
         </div>
       </Card>
     </div>
