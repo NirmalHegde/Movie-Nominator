@@ -5,6 +5,8 @@ import nominationListReducer from "./nominationListReducer";
 import nominationListTriggerReducer from "./nominationListTriggerReducer";
 import errorBannerTriggerReducer from "./errorBannerTriggerReducer";
 import successBannerTriggerReducer from "./successBannerTriggerReducer";
+import fullMovieTriggerReducer from "./fullMovieTriggerReducer";
+import fullMovieReducer from "./fullMovieReducer";
 
 const rootReducer = combineReducers({
   movieListTrigger: movieListTriggerReducer,
@@ -13,6 +15,8 @@ const rootReducer = combineReducers({
   nominationListTrigger: nominationListTriggerReducer,
   errorBannerTrigger: errorBannerTriggerReducer,
   successBannerTrigger: successBannerTriggerReducer,
+  fullMovie: fullMovieReducer,
+  fullMovieTrigger: fullMovieTriggerReducer,
 });
 
 /* eslint-disable */

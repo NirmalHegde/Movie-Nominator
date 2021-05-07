@@ -10,10 +10,10 @@ import { useLazyQuery } from "@apollo/client";
 import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/components/OptionList";
 
 import { useDispatch } from "react-redux";
-import IBaseMovie from "../../../models/interfaces/BaseMovie";
-import { MOVIE_SEARCH } from "../../../graphQL/queries";
-import ReduxActions from "../../../models/classes/ReduxActions";
-import GenericOutputs from "../../../models/classes/GenericOutputs";
+import IBaseMovie from "../../models/interfaces/BaseMovie";
+import { MOVIE_SEARCH } from "../../graphQL/queries";
+import ReduxActions from "../../models/classes/ReduxActions";
+import GenericOutputs from "../../models/classes/GenericOutputs";
 import "./Search.css";
 
 const genericOutputs = new GenericOutputs();

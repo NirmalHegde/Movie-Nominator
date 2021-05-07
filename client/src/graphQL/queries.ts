@@ -11,3 +11,26 @@ export const MOVIE_SEARCH = gql`
     }
   }
 `;
+
+export const FULL_MOVIE = gql`
+  query fullMovie($id: String!) {
+    fullMovie(id: $id) {
+      Title
+      Year
+      Rated
+      Released
+      Runtime
+      Genre
+      Director
+      Writer
+      Actors
+      Plot
+      Poster
+      Ratings {
+        Source
+        Value
+      }
+      Production
+    }
+  }
+`;

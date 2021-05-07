@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Card } from "@shopify/polaris";
 import { useDispatch, useSelector } from "react-redux";
 import NominationCard from "./nominationCard/NominationCard";
-import { RootState } from "../../../reducers";
+import { RootState } from "../../reducers";
 import "./NominationList.css";
-import ReduxActions from "../../../models/classes/ReduxActions";
+import ReduxActions from "../../models/classes/ReduxActions";
 
 const reduxActions = new ReduxActions();
 

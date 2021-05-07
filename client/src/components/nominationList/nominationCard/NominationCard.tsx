@@ -1,9 +1,9 @@
 import React from "react";
 import { Button, Card } from "@shopify/polaris";
 import { useDispatch, useSelector } from "react-redux";
-import INomination from "../../../../models/interfaces/Nomination";
-import { RootState } from "../../../../reducers";
-import ReduxActions from "../../../../models/classes/ReduxActions";
+import INomination from "../../../models/interfaces/Nomination";
+import { RootState } from "../../../reducers";
+import ReduxActions from "../../../models/classes/ReduxActions";
 
 const reduxActions = new ReduxActions();
 

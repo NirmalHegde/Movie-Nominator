@@ -3,9 +3,9 @@ import React from "react";
 import { Banner } from "@shopify/polaris";
 import { useDispatch, useSelector } from "react-redux";
 import "./NotificationBanner.css";
-import ReduxActions from "../../../../models/classes/ReduxActions";
-import { RootState } from "../../../../reducers";
-import BannerStyle from "../../../../models/enums/BannerStyleEnum";
+import ReduxActions from "../../../models/classes/ReduxActions";
+import { RootState } from "../../../reducers";
+import BannerStyle from "../../../models/enums/BannerStyleEnum";
 
 const reduxActions = new ReduxActions();
 

@@ -6,7 +6,9 @@ enum Redux {
 	RemoveNomination = "REMOVENOMINATION",
 	ChangeNominationList = "CHANGENOMINATIONS",
 	ShowErrorBanner = "SHOWERROR",
-	ShowSuccessBanner = "SHOWSUCCESS"
+	ShowSuccessBanner = "SHOWSUCCESS",
+	SetFullMovie = "SETFULLMOVIE",
+	ShowFullMovie = "SHOWFULLMOVIE",
 }
 
 export default Redux;

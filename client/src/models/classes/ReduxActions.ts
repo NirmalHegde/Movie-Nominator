@@ -2,6 +2,7 @@
 import IBaseMovie from "../interfaces/BaseMovie";
 import INomination from "../interfaces/Nomination";
 import Redux from "../enums/ReduxEnum";
+import IFullMovie from "../interfaces/FullMovie";
 
 export default class ReduxActions {
   public showMovieList(): {type: Redux} {
@@ -48,6 +49,19 @@ export default class ReduxActions {
     return {
       type: Redux.ShowSuccessBanner,
       payload: error,
+    };
+  }
+
+  public setFullMovie(movie: IFullMovie): {type: Redux, payload: IFullMovie} {
+    return {
+      type: Redux.SetFullMovie,
+      payload: movie,
+    };
+  }
+
+  public showFullMovie(): {type: Redux} {
+    return {
+      type: Redux.ShowFullMovie,
     };
   }
 }

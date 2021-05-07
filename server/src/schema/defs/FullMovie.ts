@@ -1,4 +1,5 @@
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql'
+import Ratings from './Ratings'
 
 const FullMovie = new GraphQLObjectType({
   name: 'FullMovie',
@@ -37,7 +38,7 @@ const FullMovie = new GraphQLObjectType({
 			type: GraphQLString,
 		},
 		Ratings: {
-			type: GraphQLList(GraphQLString),
+			type: GraphQLList(Ratings),
 		},
 		Production: {
 			type: GraphQLString,

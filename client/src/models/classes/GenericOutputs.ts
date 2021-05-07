@@ -1,6 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/components/OptionList";
 import IBaseMovie from "../interfaces/BaseMovie";
+import IFullMovie from "../interfaces/FullMovie";
 import INomination from "../interfaces/Nomination";
 
 export default class GenericOutputs {
@@ -42,4 +43,23 @@ export default class GenericOutputs {
 	    Poster: "N/A",
 	  },
 	];
+
+	public initFullMovie: IFullMovie = {
+	  Title: "N/A",
+	  Year: "N/A",
+	  Rated: "N/A",
+	  Released: "N/A",
+	  Runtime: "N/A",
+	  Genre: "N/A",
+	  Director: "N/A",
+	  Writer: "N/A",
+	  Actors: "N/A",
+	  Plot: "N/A",
+	  Poster: "N/A",
+	  Ratings: {
+	    Source: "N/A",
+	    Value: "N/A",
+	  },
+	  Production: "N/A",
+	}
 }
