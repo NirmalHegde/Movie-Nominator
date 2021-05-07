@@ -59,9 +59,10 @@ export default class ReduxActions {
     };
   }
 
-  public showFullMovie(): {type: Redux} {
+  public showFullMovie(show: boolean): {type: Redux, payload: boolean} {
     return {
       type: Redux.ShowFullMovie,
+      payload: show,
     };
   }
 }

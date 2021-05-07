@@ -5,13 +5,15 @@ import "./Main.css";
 import MovieList from "./movieList/MovieList";
 import NominationList from "./nominationList/NominationList";
 import Notification from "./notification/Notification";
+import MovieInfo from "./movieInfo/MovieInfo";
 
 require("dotenv").config();
 
-const Main = (): JSX.Element => {
+const Main: React.FC = (): JSX.Element => {
   return (
     <div>
       <Notification />
+      <MovieInfo />
       <div className="root">
         <h1 className="title">🎬 Welcome to the Shoppies! 🎬</h1>
         <h2 className="title">

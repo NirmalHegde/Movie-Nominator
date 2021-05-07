@@ -19,11 +19,12 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
   const nominationList = useSelector(
     (state: RootState) => state.nominationList,
   );
-  const [isDisabled, setIsDisabled] = useState(false);
-  const dispatch = useDispatch();
   const shouldCheckDisabled = useSelector(
     (state: RootState) => state.nominationListTrigger,
   );
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [triggerModal, setTriggerModal] = useState(false);
+  const dispatch = useDispatch();
   const [fullMovie, { data }] = useLazyQuery(FULL_MOVIE, {
     variables: { id: imdbID },
   });
@@ -42,20 +43,24 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
   };
 
   const showFullMovie = useCallback(() => {
+    setTriggerModal(!triggerModal);
     fullMovie();
-  }, [fullMovie]);
+  }, [fullMovie, triggerModal]);
 
   useEffect(() => {
+    console.log(nominationList);
     const result = nominationList.some((nomination) => {
       return nomination.imdbID === imdbID;
     });
     setIsDisabled(result);
-  }, [shouldCheckDisabled]);
+  }, [shouldCheckDisabled, imdbID, nominationList]);
 
   useEffect(() => {
-    dispatch(reduxActions.setFullMovie(data));
-    dispatch(reduxActions.showFullMovie());
-  }, [data]);
+    if (data) {
+      dispatch(reduxActions.setFullMovie(data.fullMovie));
+      dispatch(reduxActions.showFullMovie(true));
+    }
+  }, [data, triggerModal]);
 
   return (
     <div

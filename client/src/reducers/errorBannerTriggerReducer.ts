@@ -11,11 +11,7 @@ const errorBannerTriggerReducer = (
 ): boolean => {
   switch (action.type) {
   case Redux.ShowErrorBanner:
-    if (action.payload === true) {
-      return true;
-    }
-    return false;
-
+    return action.payload;
   default:
     return state;
   }

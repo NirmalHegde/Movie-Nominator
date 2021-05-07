@@ -17,6 +17,7 @@ export const FULL_MOVIE = gql`
     fullMovie(id: $id) {
       Title
       Year
+      imdbID
       Rated
       Released
       Runtime

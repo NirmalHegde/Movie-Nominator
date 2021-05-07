@@ -47,6 +47,7 @@ export default class GenericOutputs {
 	public initFullMovie: IFullMovie = {
 	  Title: "N/A",
 	  Year: "N/A",
+	  imdbID: "N/A",
 	  Rated: "N/A",
 	  Released: "N/A",
 	  Runtime: "N/A",
@@ -56,10 +57,10 @@ export default class GenericOutputs {
 	  Actors: "N/A",
 	  Plot: "N/A",
 	  Poster: "N/A",
-	  Ratings: {
+	  Ratings: [{
 	    Source: "N/A",
 	    Value: "N/A",
-	  },
+	  }],
 	  Production: "N/A",
 	}
 }

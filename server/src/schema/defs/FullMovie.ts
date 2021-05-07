@@ -10,6 +10,9 @@ const FullMovie = new GraphQLObjectType({
     Year: {
       type: GraphQLString,
     },
+		imdbID: {
+			type: GraphQLString,
+		},
 		Rated: {
 			type: GraphQLString,
 		},
