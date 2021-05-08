@@ -1,7 +1,16 @@
 div.nominationListRoot {
 	flex-grow: 1;
-	max-width: 30vw;
 	margin-left: 3%;
+}
+
+h1.nominationsTitle {
+	font-size: 2.7rem;
+	line-height: 1.0;
+}
+
+p.nominationsInit {
+	font-size: 1.7rem;
+	margin-top: 5%;
 }
 
 @media only screen and (max-width: 700px) {

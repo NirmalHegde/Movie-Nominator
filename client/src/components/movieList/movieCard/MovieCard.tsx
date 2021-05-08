@@ -1,5 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useEffect, useState } from "react";
+import React, {
+  SyntheticEvent, useCallback, useEffect, useState,
+} from "react";
 import { Button } from "@shopify/polaris";
 import { ImageMajor } from "@shopify/polaris-icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,7 +44,7 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
     }
   };
 
-  const showFullMovie = useCallback((e: any) => {
+  const showFullMovie = useCallback((e: SyntheticEvent) => {
     if (e.target === e.currentTarget) {
       setTriggerModal(!triggerModal);
       fullMovie();

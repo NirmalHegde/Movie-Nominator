@@ -31,11 +31,12 @@ const MovieList = (): JSX.Element => {
     <div className="movieListRoot">
       <div className="border">
         <Card sectioned>
+          <h1 className="movieListTitle">Results</h1>
           <div style={{ overflowY: "auto", height: "60vh" }}>
             {componentMovieList.map((movie) => {
               if (movie.imdbID === "N/A") {
                 return (
-                  <p>Start by searching above!</p>
+                  <p className="movieListInit">Start by searching above to find your favourite movies!</p>
                 );
               }
               return (

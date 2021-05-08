@@ -19,7 +19,7 @@ import "./Search.css";
 const genericOutputs = new GenericOutputs();
 const reduxActions = new ReduxActions();
 
-const Search = (): JSX.Element => {
+const Search: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [inputValue, setInputValue] = useState("");

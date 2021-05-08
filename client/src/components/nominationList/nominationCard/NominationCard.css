@@ -5,3 +5,13 @@ div.nominationCard {
 div.spacing {
 	flex-grow: 1;
 }
+
+div.nominationCard-show {
+	transition: 0.3s;
+	opacity: 1;
+}
+
+div.nominationCard-disappear {
+	transition: 0.3s;
+	opacity: 0;
+}

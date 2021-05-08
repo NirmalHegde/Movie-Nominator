@@ -9,7 +9,7 @@ import ReduxActions from "../../models/classes/ReduxActions";
 
 const reduxActions = new ReduxActions();
 
-const NominationList = (): JSX.Element => {
+const NominationList: React.FC = (): JSX.Element => {
   const nominationList = useSelector(
     (state: RootState) => state.nominationList,
   );
@@ -36,7 +36,7 @@ const NominationList = (): JSX.Element => {
       <div className="border">
         <Card sectioned>
           <div>
-            <h1>Your Nominations</h1>
+            <h1 className="nominationsTitle">Your Nominations</h1>
             {componentNominationList.length > 0 && (
               <ul>
                 {componentNominationList.map((nomination, index) => {
@@ -53,7 +53,7 @@ const NominationList = (): JSX.Element => {
                 })}
               </ul>
             )}
-            {componentNominationList.length < 1 && <p>No nominations currently</p>}
+            {componentNominationList.length < 1 && <p className="nominationsInit">No nominations currently</p>}
           </div>
         </Card>
       </div>
