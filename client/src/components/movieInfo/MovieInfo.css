@@ -1,0 +1,22 @@
+div.titleSection {
+	display: flex;
+	justify-content: center;
+}
+
+div.basicInfo {
+	display: flex;
+}
+
+div.spacing {
+	flex-grow: 1;
+}
+
+img.rating {
+	height: 8vh;
+	width: auto;
+}
+
+img.critiques {
+	height: 3vh;
+	width: auto;
+}

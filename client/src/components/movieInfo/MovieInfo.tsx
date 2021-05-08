@@ -6,6 +6,7 @@ import ReduxActions from "../../models/classes/ReduxActions";
 import IModalAssets from "../../models/interfaces/ModalAssets";
 import { RootState } from "../../reducers";
 import assets from "./assets";
+import "./MovieInfo.css";
 
 const reduxActions = new ReduxActions();
 
@@ -31,7 +32,9 @@ const MovieInfo: React.FC = (): JSX.Element => {
   const nominateMovie = (): void => {
     dispatch(reduxActions.showFullMovie(false));
     if (nominationList.length < 5) {
-      dispatch(reduxActions.addNomination({ Title: movie.Title, imdbID: movie.imdbID }));
+      dispatch(
+        reduxActions.addNomination({ Title: movie.Title, imdbID: movie.imdbID }),
+      );
       window.localStorage.setItem(
         "nominations",
         JSON.stringify(nominationList),
@@ -44,7 +47,6 @@ const MovieInfo: React.FC = (): JSX.Element => {
 
   return (
     <Modal
-      large
       open={showModal}
       title={`${movie.Title} (${movie.Year})`}
       primaryAction={{
@@ -55,15 +57,19 @@ const MovieInfo: React.FC = (): JSX.Element => {
       onClose={() => dispatch(reduxActions.showFullMovie(false))}
     >
       <Modal.Section>
-        <div>
+        <div className="titleSection">
           {movie.Poster !== "N/A" && (
             <img alt={movie.Title} src={movie.Poster} />
           )}
           {movie.Poster === "N/A" && <ImageMajor />}
+        </div>
+      </Modal.Section>
+      <Modal.Section>
+        <div className="basicInfo">
           <div>
             {movie.Genre !== "N/A" && (
               <p>
-                Genre:
+                Genre:&nbsp;
                 {movie.Genre}
               </p>
             )}
@@ -77,35 +83,43 @@ const MovieInfo: React.FC = (): JSX.Element => {
                 {movie.Runtime}
               </p>
             )}
-            {movie.Rated !== "N/A" && (
-              <img
-                alt={movie.Rated}
-                src={assets[movie.Rated as keyof IModalAssets]}
-              />
-            )}
           </div>
+          <div className="spacing" />
+          {movie.Rated !== "N/A" && (
+            <img
+              className="rating"
+              alt={movie.Rated}
+              src={assets[movie.Rated as keyof IModalAssets]}
+            />
+          )}
         </div>
       </Modal.Section>
       <Modal.Section>
         <div>
-          <p>{movie.Plot}</p>
+          <p>
+            Plot:&nbsp;
+            {movie.Plot}
+          </p>
         </div>
       </Modal.Section>
       {movie.Ratings.length > 0 && (
         <>
           <Modal.Section>
             <h1>Ratings:</h1>
-            {movie.Ratings.map((rating) => {
-              return (
-                <div>
-                  <img
-                    alt={rating.Source}
-                    src={assets[rating.Source as keyof IModalAssets]}
-                  />
-                  <p>{`: ${rating.Value}`}</p>
-                </div>
-              );
-            })}
+            <div className="basicInfo">
+              {movie.Ratings.map((rating) => {
+                return (
+                  <div className="basicInfo">
+                    <img
+                      className="critiques"
+                      alt={rating.Source}
+                      src={assets[rating.Source as keyof IModalAssets]}
+                    />
+                    <p>{`: ${rating.Value}`}</p>
+                  </div>
+                );
+              })}
+            </div>
           </Modal.Section>
         </>
       )}

@@ -42,9 +42,11 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
     }
   };
 
-  const showFullMovie = useCallback(() => {
-    setTriggerModal(!triggerModal);
-    fullMovie();
+  const showFullMovie = useCallback((e: any) => {
+    if (e.target === e.currentTarget) {
+      setTriggerModal(!triggerModal);
+      fullMovie();
+    }
   }, [fullMovie, triggerModal]);
 
   useEffect(() => {
