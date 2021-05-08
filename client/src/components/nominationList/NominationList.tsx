@@ -36,7 +36,7 @@ const NominationList: React.FC = (): JSX.Element => {
       <div className="border">
         <Card sectioned>
           <div>
-            <h1 className="nominationsTitle">Your Nominations</h1>
+            <h1 className="nominationsTitle">Nominations</h1>
             {componentNominationList.length > 0 && (
               <ul>
                 {componentNominationList.map((nomination, index) => {
@@ -53,7 +53,9 @@ const NominationList: React.FC = (): JSX.Element => {
                 })}
               </ul>
             )}
-            {componentNominationList.length < 1 && <p className="nominationsInit">No nominations currently</p>}
+            {componentNominationList.length < 1 && (
+              <p className="nominationsInit">No nominations currently</p>
+            )}
           </div>
         </Card>
       </div>

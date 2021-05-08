@@ -6,12 +6,12 @@ div.spacing {
 	flex-grow: 1;
 }
 
-div.nominationCard-show {
+li.nominationCard {
 	transition: 0.3s;
 	opacity: 1;
 }
 
-div.nominationCard-disappear {
+li.nominationCard-disappear {
 	transition: 0.3s;
 	opacity: 0;
 }

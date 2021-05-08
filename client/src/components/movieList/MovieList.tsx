@@ -16,7 +16,7 @@ const initMovieList: IBaseMovie[] = [
   },
 ];
 
-const MovieList = (): JSX.Element => {
+const MovieList: React.FC = (): JSX.Element => {
   const shouldMovieListLoad = useSelector(
     (state: RootState) => state.movieListTrigger,
   );
@@ -36,7 +36,9 @@ const MovieList = (): JSX.Element => {
             {componentMovieList.map((movie) => {
               if (movie.imdbID === "N/A") {
                 return (
-                  <p className="movieListInit">Start by searching above to find your favourite movies!</p>
+                  <p className="movieListInit">
+                    Start by searching above to find your favourite movies!
+                  </p>
                 );
               }
               return (
