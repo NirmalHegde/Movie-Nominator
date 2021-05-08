@@ -5,6 +5,7 @@ div.cardContent {
 	padding: 2%;
 	border-radius: 20px;
 	margin-bottom: 3%;
+	cursor: pointer;
 }
 
 div.cardContent:hover {

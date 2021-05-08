@@ -5,10 +5,10 @@ div.movieListRoot {
 h1.movieListTitle {
 	line-height: 1.0;
 	font-size: 2.7rem;
+	margin-bottom: 2%;
 }
 
 p.movieListInit {
-	margin-top: 2%;
 	font-size: 1.7rem;
 }
 
