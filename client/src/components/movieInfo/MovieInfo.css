@@ -3,8 +3,17 @@ div.titleSection {
 	justify-content: center;
 }
 
+div.infoParent {
+	display: flex;
+}
+
 div.basicInfo {
 	display: flex;
+	margin-bottom: 2%;
+}
+
+div.basicInfo > h3 {
+	margin-left: 1%;
 }
 
 div.spacing {
@@ -12,11 +21,22 @@ div.spacing {
 }
 
 img.rating {
-	height: 8vh;
+	height: 6vh;
 	width: auto;
+}
+
+div.critiques {
+	display: flex;
+}
+
+div.critiques > div {
+	display: flex;
+	flex-grow: 1;
+	justify-content: center;
 }
 
 img.critiques {
 	height: 3vh;
 	width: auto;
+	flex-shrink: 1;
 }

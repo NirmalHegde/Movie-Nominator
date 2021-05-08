@@ -77,12 +77,11 @@ const Search: React.FC = (): JSX.Element => {
   const updateText = useCallback(
     (value: string) => {
       setInputValue(value);
+      setIsLoading(true);
       if (value === "") {
-        setIsLoading(true);
         setOptions(genericOutputs.initOptions);
         setIsLoading(false);
       } else {
-        setIsLoading(true);
         baseMovieSearch();
       }
     },

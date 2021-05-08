@@ -25,6 +25,7 @@ export default class GenericOutputs {
 	public initNominationList: INomination[] = [{
 	  Title: "No nominations currently",
 	  imdbID: "N/A",
+	  Year: "N/A",
 	}];
 
 	public errorOptions: OptionDescriptor[] = [

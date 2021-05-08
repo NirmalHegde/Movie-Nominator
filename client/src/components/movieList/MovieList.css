@@ -12,6 +12,11 @@ p.movieListInit {
 	font-size: 1.7rem;
 }
 
+div.scroll {
+	overflow-y: auto;
+	height: 60vh;
+}
+
 @media only screen and (max-width: 700px) {
 	div.movieListRoot {
 		margin-bottom: 5%;

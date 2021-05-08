@@ -26,6 +26,7 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
   );
   const [isDisabled, setIsDisabled] = useState(false);
   const [triggerModal, setTriggerModal] = useState(false);
+  const [showMovie, setShowMovie] = useState(false);
   const dispatch = useDispatch();
   const [fullMovie, { data }] = useLazyQuery(FULL_MOVIE, {
     variables: { id: imdbID },
@@ -33,7 +34,7 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
 
   const addNominationToList = (): void => {
     if (nominationList.length < 5) {
-      dispatch(reduxActions.addNomination({ Title, imdbID }));
+      dispatch(reduxActions.addNomination({ Title, imdbID, Year }));
       window.localStorage.setItem(
         "nominations",
         JSON.stringify(nominationList),
@@ -65,13 +66,19 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
     }
   }, [data, triggerModal]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setShowMovie(true);
+    }, 200);
+  }, []);
+
   return (
     <div
       tabIndex={0}
       role="button"
       onKeyDown={showFullMovie}
       onClick={showFullMovie}
-      className="cardContent"
+      className={showMovie ? "cardContent" : "cardContent-disappear"}
     >
       {Poster !== "N/A" && <img className="poster" src={Poster} alt={Title} />}
       {imdbID !== "N/A" && Poster === "N/A" && (
@@ -84,7 +91,7 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
           <div className="buttonSpacing" />
           <div>
             <Button primary disabled={isDisabled} onClick={addNominationToList}>
-              Nominate
+              +
             </Button>
           </div>
         </>

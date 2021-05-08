@@ -44,6 +44,7 @@ const NominationList: React.FC = (): JSX.Element => {
                     <>
                       <NominationCard
                         key={nomination.imdbID}
+                        Year={nomination.Year}
                         Title={nomination.Title}
                         imdbID={nomination.imdbID}
                       />

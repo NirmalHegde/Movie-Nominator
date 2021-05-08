@@ -32,7 +32,7 @@ const MovieList: React.FC = (): JSX.Element => {
       <div className="border">
         <Card sectioned>
           <h1 className="movieListTitle">Results</h1>
-          <div style={{ overflowY: "auto", height: "60vh" }}>
+          <div className="scroll">
             {componentMovieList.map((movie) => {
               if (movie.imdbID === "N/A") {
                 return (
