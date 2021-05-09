@@ -10,11 +10,13 @@ const cors = require('cors');
 require('dotenv').config();
 const app = express();
 const port = process.env.PORT || '5000';
+// cors policy and connect to graphql
 app.use(cors());
 app.use('/graphql', express_graphql_1.graphqlHTTP({
     schema: schema_1.default,
     graphiql: true,
 }));
+// port listening
 app.listen(port, (err) => {
     if (err) {
         return console.error(err);

@@ -16,6 +16,8 @@ const axios_1 = __importDefault(require("axios"));
 const graphql_1 = require("graphql");
 const BaseMovie_1 = __importDefault(require("./defs/BaseMovie"));
 const FullMovie_1 = __importDefault(require("./defs/FullMovie"));
+// graphql queries with base movie and full movie
+// axios is used to query omdb api and information is sent through graphql to frontend
 const RootQuery = new graphql_1.GraphQLObjectType({
     name: 'RootQuery',
     fields: {

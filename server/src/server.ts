@@ -8,6 +8,7 @@ require('dotenv').config()
 const app = express()
 const port: string = process.env.PORT || '5000'
 
+// cors policy and connect to graphql
 app.use(cors())
 app.use(
   '/graphql',
@@ -17,6 +18,7 @@ app.use(
   }),
 )
 
+// port listening
 app.listen(port, (err) => {
   if (err) {
     return console.error(err)

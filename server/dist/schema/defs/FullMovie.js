@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_1 = require("graphql");
 const Ratings_1 = __importDefault(require("./Ratings"));
+// full movie schema
 const FullMovie = new graphql_1.GraphQLObjectType({
     name: 'FullMovie',
     fields: () => ({

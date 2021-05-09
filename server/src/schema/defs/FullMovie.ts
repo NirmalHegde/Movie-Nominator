@@ -1,6 +1,7 @@
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql'
 import Ratings from './Ratings'
 
+// full movie schema
 const FullMovie = new GraphQLObjectType({
   name: 'FullMovie',
   fields: () => ({
@@ -10,12 +11,12 @@ const FullMovie = new GraphQLObjectType({
     Year: {
       type: GraphQLString,
     },
-		imdbID: {
-			type: GraphQLString,
-		},
-		Rated: {
-			type: GraphQLString,
-		},
+    imdbID: {
+      type: GraphQLString,
+    },
+    Rated: {
+      type: GraphQLString,
+    },
     Released: {
       type: GraphQLString,
     },
@@ -25,27 +26,27 @@ const FullMovie = new GraphQLObjectType({
     Genre: {
       type: GraphQLString,
     },
-		Director: {
-			type: GraphQLString,
-		},
-		Writer: {
-			type: GraphQLString,
-		},
-		Actors: {
-			type: GraphQLString,
-		},
-		Plot: {
-			type: GraphQLString,
-		},
-		Poster: {
-			type: GraphQLString,
-		},
-		Ratings: {
-			type: GraphQLList(Ratings),
-		},
-		Production: {
-			type: GraphQLString,
-		}
+    Director: {
+      type: GraphQLString,
+    },
+    Writer: {
+      type: GraphQLString,
+    },
+    Actors: {
+      type: GraphQLString,
+    },
+    Plot: {
+      type: GraphQLString,
+    },
+    Poster: {
+      type: GraphQLString,
+    },
+    Ratings: {
+      type: GraphQLList(Ratings),
+    },
+    Production: {
+      type: GraphQLString,
+    },
   }),
 })
 

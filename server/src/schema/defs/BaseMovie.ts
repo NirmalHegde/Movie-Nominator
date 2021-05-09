@@ -1,5 +1,6 @@
 import { GraphQLObjectType, GraphQLString } from 'graphql'
 
+// searchable movie schema
 const BaseMovie = new GraphQLObjectType({
   name: 'BaseMovie',
   fields: () => ({

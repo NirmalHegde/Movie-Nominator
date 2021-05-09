@@ -1,3 +1,4 @@
+// interface for full movie
 export interface IFullMovie {
 	Title: string,
 	Year: string,
