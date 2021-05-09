@@ -9,6 +9,8 @@ https://shoppiesserver.herokuapp.com (Server side view of GraphiQL)
 ## Extras
 ### Autocomplete
 Ever forget the name of a movie you want to find? Never fear! Autocomplete is here! Never forget the name of the movie you want to nominate again!
+![](samples/autocomplete.gif)
+
 
 ### Movie Information
 Each movie has extra information about the movie when clicked, allowing you to make a more informed decision before nomination!
