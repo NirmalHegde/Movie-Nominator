@@ -28,7 +28,8 @@ const NominationCard = (props: INomination): JSX.Element => {
       dispatch(reduxActions.removeNomination(props));
       window.localStorage.setItem("nominations", JSON.stringify(nominationList));
       setTimeout(() => {
-        dispatch(reduxActions.changeNominationList()); // allow component to fade out before updating list
+        // allow component to fade out before updating list
+        dispatch(reduxActions.changeNominationList());
       }, 300);
     }
   }, [showNomination]);
