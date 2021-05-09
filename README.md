@@ -2,14 +2,14 @@
 This project is for Shopify's Frontend Developer Challenge, The Shoppies! The goal of this project was to create 
 <br/>
 
-### Server Side
+### Server Tech Stack
 * **[Express](https://expressjs.com/)**
 * **[GraphQL](https://graphql.org/)**
 * **[Axios](https://www.npmjs.com/package/axios)**
 * **[TypeScript](https://www.typescriptlang.org/)**
 * **[Eslint](https://eslint.org/)**
 
-### Client Side
+### Client Tech Stack
 * **[React](https://reactjs.org/)**
 * **[Redux](https://redux.js.org/)**
 * **[Apollo](https://www.apollographql.com/)**
