@@ -38,7 +38,7 @@ const NominationList: React.FC = (): JSX.Element => {
           <div>
             <h1 className="nominationsTitle">Nominations</h1>
             {componentNominationList.length > 0 && (
-              <ul>
+              <ul className="nominationParent">
                 {componentNominationList.map((nomination) => {
                   return (
                     <>

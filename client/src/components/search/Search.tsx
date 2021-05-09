@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {
   useCallback,
   useEffect,
@@ -57,11 +58,19 @@ const Search: React.FC = (): JSX.Element => {
       } else {
         // error options
         dispatch(reduxActions.setMovieList([]));
-        optionsArray = genericOutputs.errorOptions;
+        if (inputValue === "") {
+          optionsArray = genericOutputs.initOptions;
+        } else {
+          optionsArray = genericOutputs.errorOptions;
+        }
       }
     } else {
       // error options
-      optionsArray = genericOutputs.errorOptions;
+      if (inputValue === "") {
+        optionsArray = genericOutputs.initOptions;
+      } else {
+        optionsArray = genericOutputs.errorOptions;
+      }
       if (data) {
         dispatch(reduxActions.setMovieList([]));
       }
@@ -69,23 +78,16 @@ const Search: React.FC = (): JSX.Element => {
     setOptions(optionsArray); // set autocomplete options
     dispatch(reduxActions.showMovieList()); // update movie list
     return () => setIsLoading(false); // cleanup
-  }, [data, dispatch]);
+  }, [data, inputValue, dispatch]);
 
   // callback for when user tyes into the search bar
   const updateText = useCallback(
     (value: string) => {
       setInputValue(value);
-
       // loading sequence
       setIsLoading(true);
-
-      // default value
-      if (value === "") {
-        setOptions(genericOutputs.initOptions);
-        setIsLoading(false);
-      } else {
-        baseMovieSearch(); // query graphql
-      }
+      // query graphql
+      baseMovieSearch();
     },
     [baseMovieSearch],
   );

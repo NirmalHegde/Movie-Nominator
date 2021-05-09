@@ -19,4 +19,9 @@ p.nominationsInit {
 		margin-left: 0%;
 		width: auto;
 	}
+
+	ul.nominationParent {
+		overflow-y: auto;
+		height: 20vh;
+	}
 }
