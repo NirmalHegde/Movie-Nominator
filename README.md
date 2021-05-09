@@ -2,6 +2,7 @@
 This project is for Shopify's Frontend Developer Challenge, The Shoppies! The goal of this project was to create 
 <br/>
 
+## Stack
 ### Server Tech Stack
 * **[Express](https://expressjs.com/)**
 * **[GraphQL](https://graphql.org/)**
