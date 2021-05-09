@@ -3,7 +3,6 @@ This project was created for Shopify's Frontend Developer Challenge, The Shoppie
 
 ## Link to Project
 https://the-shoppies-595bc.web.app/ (Link to full web application)
-
 https://shoppiesserver.herokuapp.com (Server side view of GraphiQL)
 
 ## Extras
