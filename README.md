@@ -1,8 +1,10 @@
 # Shopify-Frontend-Developer-Challenge
-This project is for Shopify's Frontend Developer Challenge, The Shoppies! The goal of this project was to create 
+This project was created for Shopify's Frontend Developer Challenge, The Shoppies! This project allows you to search for any movie on the OMDB API (https://www.omdbapi.com/) in order to nominate them (up to 5). Hope you Enjoy!
 
 ## Link to Project
 https://the-shoppies-595bc.web.app/
+
+## Extras
 
 ## Tech Stack
 ### Server Side
