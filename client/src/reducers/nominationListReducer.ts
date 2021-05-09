@@ -1,6 +1,5 @@
 import INomination from "../models/interfaces/Nomination";
 import Redux from "../models/enums/ReduxEnum";
-import genericOutputs from "../models/classes/GenericOutputs";
 
 // state storage for nomination list
 interface NominationListReducer {
@@ -10,7 +9,7 @@ interface NominationListReducer {
 
 const nominationListReducer = (
   state: INomination[] = JSON.parse(window.localStorage.getItem("nominations") as string)
-    || genericOutputs.initNominationList,
+    || [],
   action: NominationListReducer,
 ): INomination[] => {
   const returnState: INomination[] = state;

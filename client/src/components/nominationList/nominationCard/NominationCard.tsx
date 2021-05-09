@@ -26,7 +26,11 @@ const NominationCard = (props: INomination): JSX.Element => {
   useEffect(() => {
     if (showNomination.delete) {
       dispatch(reduxActions.removeNomination(props));
-      window.localStorage.setItem("nominations", JSON.stringify(nominationList));
+      if (nominationList.length > 1) {
+        window.localStorage.setItem("nominations", JSON.stringify(nominationList));
+      } else {
+        window.localStorage.removeItem("nominations");
+      }
       setTimeout(() => {
         // allow component to fade out before updating list
         dispatch(reduxActions.changeNominationList());

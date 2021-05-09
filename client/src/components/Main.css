@@ -4,7 +4,6 @@ div.root {
 	background-size: cover;
 	background-position: center;
 	height: 100vh;
-	overflow: hidden;
 }
 
 .border {
@@ -47,8 +46,6 @@ div.content {
 
 	div.root {
 		padding: 2.7% 5% 5% 5%;
-		overflow: visible;
 		height: min-content;
 	}
 }
-
