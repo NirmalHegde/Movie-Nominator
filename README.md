@@ -2,7 +2,7 @@
 This project was created for Shopify's Frontend Developer Challenge, The Shoppies! This project allows you to search for any movie on the OMDB API (https://www.omdbapi.com/) in order to nominate them (up to 5). Hope you Enjoy!
 
 ## Link to Project
-https://the-shoppies-595bc.web.app/ (Link to web application
+https://the-shoppies-595bc.web.app/ (Link to full web application)
 
 https://shoppiesserver.herokuapp.com (Server side view of GraphiQL)
 
