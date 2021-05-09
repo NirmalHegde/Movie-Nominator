@@ -2,6 +2,9 @@
 This project is for Shopify's Frontend Developer Challenge, The Shoppies! The goal of this project was to create 
 <br/>
 
+## Link to Project
+https://the-shoppies-595bc.web.app/
+
 ## Tech Stack
 ### Server Side
 * **[Express](https://expressjs.com/)**
