@@ -1,5 +1,7 @@
 import Redux from "../models/enums/ReduxEnum";
 
+// trigger for displaying success banner
+// "congratulations, you have made 5 nominations"
 interface SuccessBannerTriggerReducer {
   type: Redux;
 	payload: boolean

@@ -5,15 +5,17 @@ import { ApolloProvider } from "@apollo/client";
 import { Provider } from "react-redux";
 
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import "@shopify/polaris/dist/styles.css";
 import store from "./reducers";
 import client from "./graphQL";
+import "@shopify/polaris/dist/styles.css";
 
 ReactDOM.render(
   <React.StrictMode>
+    {/* Redux */}
     <Provider store={store}>
+      {/* Apollo (for GraphQL API) */}
       <ApolloProvider client={client}>
+        {/* Polaris component and theming */}
         <AppProvider
           i18n={{
             Polaris: {
@@ -32,7 +34,7 @@ ReactDOM.render(
             },
           }}
           theme={{
-            colorScheme: "dark",
+            colorScheme: "dark", // Dark Mode :)
           }}
         >
           <App />
@@ -42,8 +44,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root"),
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

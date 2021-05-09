@@ -3,13 +3,12 @@ import { Modal } from "@shopify/polaris";
 import { ImageMajor } from "@shopify/polaris-icons";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ReduxActions from "../../models/classes/ReduxActions";
+
+import reduxActions from "../../models/classes/ReduxActions";
 import IModalAssets from "../../models/interfaces/ModalAssets";
 import { RootState } from "../../reducers";
 import assets from "./assets";
 import "./MovieInfo.css";
-
-const reduxActions = new ReduxActions();
 
 const MovieInfo: React.FC = (): JSX.Element => {
   const movie = useSelector((state: RootState) => state.fullMovie);
@@ -23,6 +22,7 @@ const MovieInfo: React.FC = (): JSX.Element => {
   const [isDisabled, setIsDisabled] = useState(false);
   const dispatch = useDispatch();
 
+  // side effect to check if nominate button in modal should be disabled
   useEffect(() => {
     const result = nominationList.some((nomination) => {
       return nomination.imdbID === movie.imdbID;
@@ -30,8 +30,11 @@ const MovieInfo: React.FC = (): JSX.Element => {
     setIsDisabled(result);
   }, [shouldCheckDisabled, movie.imdbID]);
 
+  // footer action to nominate movie from modal
   const nominateMovie = (): void => {
-    dispatch(reduxActions.showFullMovie(false));
+    dispatch(reduxActions.showFullMovie(false)); // close modal after selecting to nominate
+
+    // nomination confirmation (set in redux if less than 5 and localstorage)
     if (nominationList.length < 5) {
       dispatch(
         reduxActions.addNomination({ Title: movie.Title, imdbID: movie.imdbID, Year: movie.Year }),
@@ -40,9 +43,9 @@ const MovieInfo: React.FC = (): JSX.Element => {
         "nominations",
         JSON.stringify(nominationList),
       );
-      dispatch(reduxActions.changeNominationList());
+      dispatch(reduxActions.changeNominationList()); // update nomination list
     } else {
-      dispatch(reduxActions.showErrorBanner(true));
+      dispatch(reduxActions.showErrorBanner(true)); // if exceeding 5 nominations
     }
   };
 

@@ -3,13 +3,11 @@ import React from "react";
 import { Banner } from "@shopify/polaris";
 import { useDispatch, useSelector } from "react-redux";
 import "./NotificationBanner.css";
-import ReduxActions from "../../../models/classes/ReduxActions";
+import reduxActions from "../../../models/classes/ReduxActions";
 import { RootState } from "../../../reducers";
 import BannerStyle from "../../../models/enums/BannerStyleEnum";
 
-const reduxActions = new ReduxActions();
-
-const Notification = (): JSX.Element => {
+const Notification: React.FC = (): JSX.Element => {
   const errorBanner = useSelector(
     (state: RootState) => state.errorBannerTrigger,
   );
@@ -17,6 +15,7 @@ const Notification = (): JSX.Element => {
 
   return (
     <div className="notificationRoot">
+      {/* animation for banner */}
       <div className={errorBanner ? "errorBanner-show" : "errorBanner"}>
         <Banner
           status={BannerStyle.Error}

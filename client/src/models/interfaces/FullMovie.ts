@@ -1,4 +1,6 @@
 /* eslint-disable semi  */
+
+// full movie (for modal)
 export default interface IFullMovie {
   Title: string;
   Year: string;

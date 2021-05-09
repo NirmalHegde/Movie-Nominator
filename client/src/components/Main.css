@@ -3,7 +3,6 @@ div.root {
 	background-image: url("./movieBackground.png");
 	background-size: cover;
 	background-position: center;
-	/* linear-gradient(to bottom right,#111316, #243b55); */
 	height: 100vh;
 	overflow: hidden;
 }

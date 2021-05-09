@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+// enum used to ensure correct redux state was being altered or retrieved
 enum Redux {
 	ShowMovieList = "SHOWLIST",
 	SetMovieList = "SETMOVIES",

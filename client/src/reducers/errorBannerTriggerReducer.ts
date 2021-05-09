@@ -1,5 +1,7 @@
 import Redux from "../models/enums/ReduxEnum";
 
+// Trigger to activate error banner
+// "You have more than 5 selections, remove one"
 interface ErrorBannerTriggerReducer {
   type: Redux;
 	payload: boolean

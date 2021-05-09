@@ -12,12 +12,9 @@ import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/compone
 import { useDispatch } from "react-redux";
 import IBaseMovie from "../../models/interfaces/BaseMovie";
 import { MOVIE_SEARCH } from "../../graphQL/queries";
-import ReduxActions from "../../models/classes/ReduxActions";
-import GenericOutputs from "../../models/classes/GenericOutputs";
+import reduxActions from "../../models/classes/ReduxActions";
+import genericOutputs from "../../models/classes/GenericOutputs";
 import "./Search.css";
-
-const genericOutputs = new GenericOutputs();
-const reduxActions = new ReduxActions();
 
 const Search: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -31,11 +28,12 @@ const Search: React.FC = (): JSX.Element => {
     variables: { title: inputValue },
   });
 
+  // when text is updated, query graphql for new autocomplete and movie list
   useEffect(() => {
     baseMovieSearch();
   }, [inputValue, baseMovieSearch]);
 
-  // detector for when graphql query completes
+  // side effect for when graphql query completes
   useEffect(() => {
     let optionsArray: OptionDescriptor[];
 
@@ -48,8 +46,8 @@ const Search: React.FC = (): JSX.Element => {
         },
       );
 
+      // null check
       if (movieOptions) {
-        // null check
         // set redux state (for use later) and autocomplete options to query results
         dispatch(reduxActions.setMovieList(movieOptions));
         optionsArray = movieOptions.map((movieOption) => ({
@@ -57,32 +55,36 @@ const Search: React.FC = (): JSX.Element => {
           label: `${movieOption.Title} (${movieOption.Year})`,
         }));
       } else {
-        // error handling
+        // error options
         dispatch(reduxActions.setMovieList(genericOutputs.errorMovieList));
         optionsArray = genericOutputs.errorOptions;
       }
     } else {
-      // error handling
+      // error options
       optionsArray = genericOutputs.errorOptions;
       if (data) {
         dispatch(reduxActions.setMovieList(genericOutputs.errorMovieList));
       }
     }
     setOptions(optionsArray); // set autocomplete options
-    dispatch(reduxActions.showMovieList());
-    return () => setIsLoading(false);
+    dispatch(reduxActions.showMovieList()); // update movie list
+    return () => setIsLoading(false); // cleanup
   }, [data, dispatch]);
 
   // callback for when user tyes into the search bar
   const updateText = useCallback(
     (value: string) => {
       setInputValue(value);
+
+      // loading sequence
       setIsLoading(true);
+
+      // default value
       if (value === "") {
         setOptions(genericOutputs.initOptions);
         setIsLoading(false);
       } else {
-        baseMovieSearch();
+        baseMovieSearch(); // query graphql
       }
     },
     [baseMovieSearch],
@@ -91,16 +93,21 @@ const Search: React.FC = (): JSX.Element => {
   // callback for if user selects an autocomplete option
   const updateSelection = useCallback(
     (selected) => {
-      const selectedValue: OptionDescriptor[] = selected.map(
+      // find the selected label
+      const selectedLabel: OptionDescriptor[] = selected.map(
         (selectedItem: string) => {
           const matchedOption = options.find((option) => option.value.match(selectedItem));
           return matchedOption;
         },
       );
-      const removeAfter = (selectedValue[0].label as string).indexOf("(");
-      const returnInput = (selectedValue[0].label as string)
+
+      // split label into valid graphql search query
+      const removeAfter = (selectedLabel[0].label as string).indexOf("(");
+      const returnInput = (selectedLabel[0].label as string)
         .substring(0, removeAfter)
         .trim();
+
+      // set selected and input options
       setSelectedOptions(selected);
       if (returnInput && returnInput !== "") {
         setInputValue(returnInput);
@@ -113,13 +120,13 @@ const Search: React.FC = (): JSX.Element => {
   const keypressHandler = useCallback(
     (e: any): void => {
       if (e.code === "Enter") {
-        setOptions([]);
+        setOptions([]); // clear options
       }
     },
     [],
   );
 
-  // Template
+  // autocomplete textfield
   const textField = (
     <Autocomplete.TextField
       onChange={updateText}
@@ -132,7 +139,7 @@ const Search: React.FC = (): JSX.Element => {
   return (
     <div
       onKeyPress={keypressHandler}
-      style={{ height: "9vh" }}
+      className="searchContainer"
     >
       <div className="border">
         <Autocomplete

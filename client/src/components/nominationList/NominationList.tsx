@@ -5,9 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NominationCard from "./nominationCard/NominationCard";
 import { RootState } from "../../reducers";
 import "./NominationList.css";
-import ReduxActions from "../../models/classes/ReduxActions";
-
-const reduxActions = new ReduxActions();
+import reduxActions from "../../models/classes/ReduxActions";
 
 const NominationList: React.FC = (): JSX.Element => {
   const nominationList = useSelector(
@@ -21,6 +19,8 @@ const NominationList: React.FC = (): JSX.Element => {
   );
   const dispatch = useDispatch();
 
+  // side effect to check if nomination list has reached 5
+  // show success banner if it has
   useEffect(() => {
     setComponentNominationList(nominationList);
     if (nominationList.length === 5) {
@@ -53,6 +53,8 @@ const NominationList: React.FC = (): JSX.Element => {
                 })}
               </ul>
             )}
+
+            {/* default when no nominations */}
             {componentNominationList.length < 1 && (
               <p className="nominationsInit">No nominations currently</p>
             )}

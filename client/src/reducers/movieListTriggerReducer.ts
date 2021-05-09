@@ -1,5 +1,6 @@
 import Redux from "../models/enums/ReduxEnum";
 
+// trigger used to show the movie list
 interface MovieListTriggerReducer {
   type: Redux;
 }

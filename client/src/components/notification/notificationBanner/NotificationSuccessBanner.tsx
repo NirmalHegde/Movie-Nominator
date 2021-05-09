@@ -4,12 +4,10 @@ import { Banner } from "@shopify/polaris";
 import { useDispatch, useSelector } from "react-redux";
 import BannerStyle from "../../../models/enums/BannerStyleEnum";
 import { RootState } from "../../../reducers";
-import ReduxActions from "../../../models/classes/ReduxActions";
+import reduxActions from "../../../models/classes/ReduxActions";
 import "./NotificationBanner.css";
 
-const reduxActions = new ReduxActions();
-
-const Notification = (): JSX.Element => {
+const Notification: React.FC = (): JSX.Element => {
   const successBanner = useSelector(
     (state: RootState) => state.successBannerTrigger,
   );
@@ -18,6 +16,7 @@ const Notification = (): JSX.Element => {
 
   return (
     <div className="notificationRoot">
+      {/* animation for banner */}
       <div className={successBanner ? "successBanner-show" : "successBanner"}>
         <Banner
           status={BannerStyle.Success}

@@ -1,9 +1,8 @@
 import INomination from "../models/interfaces/Nomination";
 import Redux from "../models/enums/ReduxEnum";
-import GenericOutputs from "../models/classes/GenericOutputs";
+import genericOutputs from "../models/classes/GenericOutputs";
 
-const genericOutputs = new GenericOutputs();
-
+// state storage for nomination list
 interface NominationListReducer {
   type: Redux;
   payload: INomination;

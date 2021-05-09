@@ -4,7 +4,7 @@ import NotificationErrorBanner from "./notificationBanner/NotificationErrorBanne
 import NotificationSuccessBanner from "./notificationBanner/NotificationSuccessBanner";
 import "./Notification.css";
 
-const Notification = (): JSX.Element => {
+const Notification: React.FC = (): JSX.Element => {
   return (
     <div className="notificationRoot">
       <NotificationErrorBanner />

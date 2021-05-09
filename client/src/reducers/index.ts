@@ -8,6 +8,7 @@ import successBannerTriggerReducer from "./successBannerTriggerReducer";
 import fullMovieTriggerReducer from "./fullMovieTriggerReducer";
 import fullMovieReducer from "./fullMovieReducer";
 
+// all reducers used in project
 const rootReducer = combineReducers({
   movieListTrigger: movieListTriggerReducer,
   movieList: movieListReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   fullMovieTrigger: fullMovieTriggerReducer,
 });
 
+// type defs
 /* eslint-disable */
 declare global {
   interface Window {

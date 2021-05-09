@@ -4,7 +4,8 @@ import IBaseMovie from "../interfaces/BaseMovie";
 import IFullMovie from "../interfaces/FullMovie";
 import INomination from "../interfaces/Nomination";
 
-export default class GenericOutputs {
+// Generic outputs to fill options
+class GenericOutputs {
 	public initMovieList: IBaseMovie[] = [
 	  {
 	    Title: "Start by searching for your favourite movies above!",
@@ -65,3 +66,7 @@ export default class GenericOutputs {
 	  Production: "N/A",
 	}
 }
+
+const genericOutputs = new GenericOutputs();
+
+export default genericOutputs;

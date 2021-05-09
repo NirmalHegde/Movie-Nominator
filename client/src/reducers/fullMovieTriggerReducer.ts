@@ -1,5 +1,6 @@
 import Redux from "../models/enums/ReduxEnum";
 
+// trigger to open modal with full movie
 interface FullMovieTriggerReducer {
   type: Redux;
   payload: boolean;

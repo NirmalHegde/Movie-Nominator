@@ -15,6 +15,7 @@ import tvpg from "./assets/tvpg.png";
 import tv14 from "./assets/tv14.png";
 import tvma from "./assets/tvma.png";
 
+// mapping for assets in movieInfo
 const assets: IModalAssets = {
   "Internet Movie Database": imdb,
   Metacritic: meta,

@@ -1,13 +1,13 @@
 import IBaseMovie from "../models/interfaces/BaseMovie";
-import GenericOutputs from "../models/classes/GenericOutputs";
+import genericOutputs from "../models/classes/GenericOutputs";
 import Redux from "../models/enums/ReduxEnum";
 
+// state storage for movie list
 interface MovieListReducer {
   type: Redux;
   payload: IBaseMovie[];
 }
 
-const genericOutputs = new GenericOutputs();
 const movieListReducer = (
   state = genericOutputs.initMovieList,
   action: MovieListReducer,

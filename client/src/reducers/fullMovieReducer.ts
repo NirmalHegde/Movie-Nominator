@@ -1,13 +1,13 @@
-import GenericOutputs from "../models/classes/GenericOutputs";
+import genericOutputs from "../models/classes/GenericOutputs";
 import Redux from "../models/enums/ReduxEnum";
 import IFullMovie from "../models/interfaces/FullMovie";
 
+// state storage for full movie to display in modal
 interface FullMovieReducer {
   type: Redux;
   payload: IFullMovie;
 }
 
-const genericOutputs = new GenericOutputs();
 const fullMovieReducer = (
   state = genericOutputs.initFullMovie,
   action: FullMovieReducer,

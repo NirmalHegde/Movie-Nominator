@@ -23,6 +23,7 @@ const MovieList: React.FC = (): JSX.Element => {
   const movieList = useSelector((state: RootState) => state.movieList);
   const [componentMovieList, setComponentMovieList] = useState(initMovieList);
 
+  // side effect to load movie after user searches
   useEffect(() => {
     setComponentMovieList(movieList);
   }, [shouldMovieListLoad]);
@@ -34,6 +35,7 @@ const MovieList: React.FC = (): JSX.Element => {
           <h1 className="movieListTitle">Results</h1>
           <div className="scroll">
             {componentMovieList.map((movie) => {
+              // if no cards to display, display default
               if (movie.imdbID === "N/A") {
                 return (
                   <p className="movieListInit">

@@ -4,7 +4,8 @@ import INomination from "../interfaces/Nomination";
 import Redux from "../enums/ReduxEnum";
 import IFullMovie from "../interfaces/FullMovie";
 
-export default class ReduxActions {
+// Actions used to change redux state
+class ReduxActions {
   public showMovieList(): {type: Redux} {
     return {
       type: Redux.ShowMovieList,
@@ -66,3 +67,7 @@ export default class ReduxActions {
     };
   }
 }
+
+const reduxActions = new ReduxActions();
+
+export default reduxActions;

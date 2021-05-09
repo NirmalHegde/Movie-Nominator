@@ -1,4 +1,6 @@
 /* eslint-disable semi  */
+
+// used to map assets used in modal
 export default interface IModalAssets {
 	"Internet Movie Database": string;
 	"Metacritic": string;
