@@ -9,7 +9,7 @@ https://shoppiesserver.herokuapp.com (Server side view of GraphiQL)
 ## Extras
 ### Autocomplete
 Ever forget the name of a movie you want to find? Never fear! Autocomplete is here! Never forget the name of the movie you want to nominate again!
-<br />
+<br /><br />
 ![](samples/autocomplete.gif)
 
 
