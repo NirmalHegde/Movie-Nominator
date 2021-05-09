@@ -18,17 +18,19 @@ const NominationCard = (props: INomination): JSX.Element => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (showNomination.delete) {
-      dispatch(reduxActions.removeNomination(props));
-      window.localStorage.setItem("nominations", JSON.stringify(nominationList));
-      setTimeout(() => {
-        dispatch(reduxActions.changeNominationList());
-      }, 200);
-    } else {
-      setTimeout(() => {
-        setShowNomination({ appear: true, delete: false });
-      }, 200);
-    }
+    (async () => {
+      if (showNomination.delete) {
+        await setTimeout(async () => {
+          await dispatch(reduxActions.removeNomination(props));
+          window.localStorage.setItem("nominations", JSON.stringify(nominationList));
+          dispatch(reduxActions.changeNominationList());
+        }, 250);
+      } else {
+        setTimeout(() => {
+          setShowNomination({ appear: true, delete: false });
+        }, 200);
+      }
+    })();
   }, [showNomination]);
 
   const removeNominationFromList = (): void => {

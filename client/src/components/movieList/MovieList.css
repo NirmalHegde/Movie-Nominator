@@ -1,5 +1,6 @@
 div.movieListRoot {
-	flex-grow: 8;
+	flex-grow: 6;
+	width: 40vw;
 }
 
 h1.movieListTitle {
@@ -21,5 +22,6 @@ div.scroll {
 	div.movieListRoot {
 		margin-bottom: 5%;
 		border-radius: 0px;
+		width: auto;
 	}
 }

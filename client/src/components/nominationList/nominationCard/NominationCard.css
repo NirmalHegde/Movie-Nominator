@@ -1,5 +1,7 @@
 div.nominationCard {
 	display: flex;
+	margin-top: 2%;
+	margin-bottom: 2%;
 }
 
 div.spacing {
@@ -14,4 +16,8 @@ li.nominationCard {
 li.nominationCard-disappear {
 	transition: 0.3s;
 	opacity: 0;
+}
+
+li:hover {
+	transform: translate3D(0,-1px,0) scale(1.03);
 }

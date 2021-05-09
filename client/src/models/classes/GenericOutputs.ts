@@ -40,7 +40,7 @@ export default class GenericOutputs {
 	  {
 	    Title: "Unable to find movies matching this search query",
 	    Year: "N/A",
-	    imdbID: "N/A",
+	    imdbID: "ERR",
 	    Poster: "N/A",
 	  },
 	];

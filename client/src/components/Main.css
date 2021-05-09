@@ -1,5 +1,5 @@
 div.root {
-	padding: 2.7% 5% 5% 5%;
+	padding: 2.7% 10% 5% 10%;
 	background-image: url("./movieBackground.png");
 	background-size: cover;
 	background-position: center;
@@ -47,6 +47,7 @@ div.content {
 	}
 
 	div.root {
+		padding: 2.7% 5% 5% 5%;
 		overflow: visible;
 		height: min-content;
 	}

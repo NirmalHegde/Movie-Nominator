@@ -3,10 +3,11 @@ div.cardContent {
 	opacity: 1;
 	display: flex;
 	align-items: center;
-	background-color: gray;
+	background-image: radial-gradient(#212330, #2b2c35);
+	box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 4px 0 rgba(0, 0, 0, 0.19);
 	padding: 2%;
-	border-radius: 20px;
-	margin-bottom: 3%;
+	border-radius: 15px;
+	margin: 2% 3% 2% 3%;
 	cursor: pointer;
 }
 
@@ -16,14 +17,16 @@ div.cardContent-disappear {
 }
 
 div.cardContent:hover {
-	transition: 0.3s;
-	box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 16px 0 rgba(0, 0, 0, 0.19);
+	transition: 0.5s;
+	box-shadow: 0 0px 8px 0 rgba(255, 255, 255, 0.2), 0 0px 10px 0 rgba(255, 255, 255, 0.19);
+	transform: translate3D(0,-1px,0) scale(1.03);
 }
 
 .poster {
-	height: 15vh;
-	width: auto;
+	height: auto;
+	width: 6vw;
 	margin-right: 3%;
+	flex-shrink: 1;
 }
 
 div.buttonSpacing {
@@ -32,6 +35,8 @@ div.buttonSpacing {
 
 @media screen and (max-width: 700px) {
 	.poster {
-		margin-left: 5%;
+		height: auto;
+		width: 10vw;
+		margin-left: 4%;
 	}
 }

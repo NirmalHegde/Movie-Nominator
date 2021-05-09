@@ -39,7 +39,7 @@ const NominationList: React.FC = (): JSX.Element => {
             <h1 className="nominationsTitle">Nominations</h1>
             {componentNominationList.length > 0 && (
               <ul>
-                {componentNominationList.map((nomination, index) => {
+                {componentNominationList.map((nomination) => {
                   return (
                     <>
                       <NominationCard
@@ -48,7 +48,6 @@ const NominationList: React.FC = (): JSX.Element => {
                         Title={nomination.Title}
                         imdbID={nomination.imdbID}
                       />
-                      {index !== componentNominationList.length - 1 && <br />}
                     </>
                   );
                 })}

@@ -2,7 +2,7 @@ div.notificationRoot {
 	z-index: 100;
 	margin-bottom: 2%;
 	position: absolute;
-	width: 95%;
+	width: 90%;
 	left: 50%;
   transform: translate(-50%);
 }
