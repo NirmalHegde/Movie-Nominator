@@ -1,5 +1,4 @@
 import IBaseMovie from "../models/interfaces/BaseMovie";
-import genericOutputs from "../models/classes/GenericOutputs";
 import Redux from "../models/enums/ReduxEnum";
 
 // state storage for movie list
@@ -9,7 +8,7 @@ interface MovieListReducer {
 }
 
 const movieListReducer = (
-  state = genericOutputs.initMovieList,
+  state = [],
   action: MovieListReducer,
 ): IBaseMovie[] => {
   switch (action.type) {

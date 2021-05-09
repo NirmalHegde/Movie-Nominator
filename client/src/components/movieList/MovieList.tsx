@@ -7,21 +7,12 @@ import IBaseMovie from "../../models/interfaces/BaseMovie";
 import MovieCard from "./movieCard/MovieCard";
 import "./MovieList.css";
 
-const initMovieList: IBaseMovie[] = [
-  {
-    Title: "Start by searching for your favourite movies above!",
-    Year: "N/A",
-    imdbID: "N/A",
-    Poster: "N/A",
-  },
-];
-
 const MovieList: React.FC = (): JSX.Element => {
   const shouldMovieListLoad = useSelector(
     (state: RootState) => state.movieListTrigger,
   );
   const movieList = useSelector((state: RootState) => state.movieList);
-  const [componentMovieList, setComponentMovieList] = useState(initMovieList);
+  const [componentMovieList, setComponentMovieList] = useState<IBaseMovie[]>([]);
 
   // side effect to load movie after user searches
   useEffect(() => {
@@ -33,29 +24,28 @@ const MovieList: React.FC = (): JSX.Element => {
       <div className="border">
         <Card sectioned>
           <h1 className="movieListTitle">Results</h1>
-          <div className="scroll">
-            {componentMovieList.map((movie) => {
-              // if no cards to display, display default
-              if (movie.imdbID === "N/A") {
+          {componentMovieList.length > 0 && (
+            <div className="scroll">
+              {componentMovieList.map((movie) => {
                 return (
-                  <p className="movieListInit">
-                    Start by searching above to find your favourite movies!
-                  </p>
+                  <>
+                    <MovieCard
+                      key={movie.imdbID}
+                      Title={movie.Title}
+                      Year={movie.Year}
+                      Poster={movie.Poster}
+                      imdbID={movie.imdbID}
+                    />
+                  </>
                 );
-              }
-              return (
-                <>
-                  <MovieCard
-                    key={movie.imdbID}
-                    Title={movie.Title}
-                    Year={movie.Year}
-                    Poster={movie.Poster}
-                    imdbID={movie.imdbID}
-                  />
-                </>
-              );
-            })}
-          </div>
+              })}
+            </div>
+          )}
+          {componentMovieList.length < 1 && (
+            <p className="movieListInit">
+              Start by searching above to find your favourite movies!
+            </p>
+          )}
         </Card>
       </div>
     </div>

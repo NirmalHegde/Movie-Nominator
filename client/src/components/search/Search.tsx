@@ -56,14 +56,14 @@ const Search: React.FC = (): JSX.Element => {
         }));
       } else {
         // error options
-        dispatch(reduxActions.setMovieList(genericOutputs.errorMovieList));
+        dispatch(reduxActions.setMovieList([]));
         optionsArray = genericOutputs.errorOptions;
       }
     } else {
       // error options
       optionsArray = genericOutputs.errorOptions;
       if (data) {
-        dispatch(reduxActions.setMovieList(genericOutputs.errorMovieList));
+        dispatch(reduxActions.setMovieList([]));
       }
     }
     setOptions(optionsArray); // set autocomplete options

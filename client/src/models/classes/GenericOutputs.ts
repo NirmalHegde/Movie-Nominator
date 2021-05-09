@@ -1,20 +1,10 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/components/OptionList";
-import IBaseMovie from "../interfaces/BaseMovie";
 import IFullMovie from "../interfaces/FullMovie";
 import INomination from "../interfaces/Nomination";
 
 // Generic outputs to fill options
 class GenericOutputs {
-	public initMovieList: IBaseMovie[] = [
-	  {
-	    Title: "Start by searching for your favourite movies above!",
-	    Year: "N/A",
-	    imdbID: "N/A",
-	    Poster: "N/A",
-	  },
-	];;
-
 	public initOptions: OptionDescriptor[] = [
 	  {
 	    value: "Example",
@@ -34,15 +24,6 @@ class GenericOutputs {
 	    value: "Error",
 	    label: "Unable to find movies matching this search query",
 	    disabled: true,
-	  },
-	];
-
-	public errorMovieList: IBaseMovie[] = [
-	  {
-	    Title: "Unable to find movies matching this search query",
-	    Year: "N/A",
-	    imdbID: "N/A",
-	    Poster: "N/A",
 	  },
 	];
 
