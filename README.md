@@ -6,8 +6,6 @@ https://the-shoppies-595bc.web.app/ (Link to full web application)
 
 https://shoppiesserver.herokuapp.com/graphql (Server side view of GraphiQL)
 
-## App in Action
-
 ## Extra Features
 ### Autocomplete
 Ever forget the name of a movie you want to find? Never fear! Autocomplete is here! Never forget the name of the movie you want to nominate again!
