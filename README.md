@@ -3,14 +3,14 @@ This project is for Shopify's Frontend Developer Challenge, The Shoppies! The go
 <br/>
 
 # Stack Used
-## Server Side
+### Server Side
 * **[Express](https://expressjs.com/)**
 * **[GraphQL](https://graphql.org/)**
 * **[Axios](https://www.npmjs.com/package/axios)**
 * **[TypeScript](https://www.typescriptlang.org/)**
 * **[Eslint](https://eslint.org/)**
 
-## Client Side
+### Client Side
 * **[React](https://reactjs.org/)**
 * **[Redux](https://redux.js.org/)**
 * **[Apollo](https://www.apollographql.com/)**
@@ -18,6 +18,6 @@ This project is for Shopify's Frontend Developer Challenge, The Shoppies! The go
 * **[TypeScript](https://www.typescriptlang.org/)**
 * **[Eslint](https://eslint.org/)**
 
-## Hosting
+### Hosting
 * **[Heroku](https://www.heroku.com/pricing)** (Server Side)
 * **[Firebase](https://firebase.google.com/)** (Client Side)
