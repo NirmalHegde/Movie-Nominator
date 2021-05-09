@@ -57,7 +57,7 @@ const MovieCard = (props: IBaseMovie): JSX.Element => {
       return nomination.imdbID === imdbID;
     });
     setIsDisabled(result);
-  }, [shouldCheckDisabled, imdbID, nominationList]);
+  }, [shouldCheckDisabled, imdbID]);
 
   useEffect(() => {
     if (data) {

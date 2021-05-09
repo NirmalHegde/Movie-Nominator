@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Modal } from "@shopify/polaris";
 import { ImageMajor } from "@shopify/polaris-icons";
 import React, { useEffect, useState } from "react";
@@ -27,7 +28,7 @@ const MovieInfo: React.FC = (): JSX.Element => {
       return nomination.imdbID === movie.imdbID;
     });
     setIsDisabled(result);
-  }, [shouldCheckDisabled, movie.imdbID, nominationList]);
+  }, [shouldCheckDisabled, movie.imdbID]);
 
   const nominateMovie = (): void => {
     dispatch(reduxActions.showFullMovie(false));
